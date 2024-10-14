@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ReticleMove : MonoBehaviour
 {
-    public float rotatespeed = 30f;
+    public float rotatespeed;
     public GameObject player;
     //float z = 0f;
     // Start is called before the first frame update
@@ -15,7 +15,8 @@ public class ReticleMove : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {   
+        rotatespeed = 100.0f;
         if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
         {
             /*
