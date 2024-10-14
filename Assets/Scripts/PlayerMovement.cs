@@ -46,6 +46,8 @@ public class PlayerMovement : MonoBehaviour
     private bool increasingDistance = true;          
     private float currentReticleDistance; 
 
+    bool isTouchingLeftWall = false; 
+    bool isTouchingRightWall = false;
     int currentJumps;
     
 
@@ -65,7 +67,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {   minReticleDistance = 5.0f;  
         maxReticleDistance = 10.0f; 
-        reticleSpeed = 6.0f;
+        reticleSpeed = 3.0f;
 
         if (currentJumps <= 0)
         {
@@ -82,18 +84,18 @@ public class PlayerMovement : MonoBehaviour
             {   
                 currentReticleDistance += reticleSpeed * Time.deltaTime;
                 if (currentReticleDistance >= maxReticleDistance)
-                {
+                {   
                     increasingDistance = false;
                 }
             }
-            else
-            {
-                currentReticleDistance -= reticleSpeed * Time.deltaTime;
-                if (currentReticleDistance <= minReticleDistance)
-                {
-                    increasingDistance = true;
-                }
-            }
+            // else
+            // {
+            //     currentReticleDistance -= reticleSpeed * Time.deltaTime;
+            //     if (currentReticleDistance <= minReticleDistance)
+            //     {
+            //         increasingDistance = true;
+            //     }
+            // }
             reticle.transform.position = (Vector2)transform.position + direction.normalized * currentReticleDistance / 5.0f;
         }
 
@@ -170,6 +172,8 @@ public class PlayerMovement : MonoBehaviour
         {
             isGrounded = true;
             rb.gravityScale = regGrav;
+            isTouchingLeftWall = false;
+            isTouchingRightWall = false;
         }
 
         if (collision.gameObject.CompareTag("Wall"))
