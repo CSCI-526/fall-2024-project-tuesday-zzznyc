@@ -31,18 +31,18 @@ public class PlayerMovement : MonoBehaviour
     Vector2 playerpos;
     Vector2 reticlepos;
     Vector2 direction;
-    [SerializeField] float speed = 1f;
+    [SerializeField] float speed;
     [SerializeField] float regGrav = 1.0f;
-    [SerializeField] float wallGrav = 0.5f;
+    [SerializeField] float wallGrav = 0.4f;
     [SerializeField] int numJumps = 5;
     [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask groundLayer;
     [SerializeField] Transform wallCheck;
     [SerializeField] LayerMask wallLayer;
 
-    [SerializeField] float minReticleDistance = 1.0f;  
-    [SerializeField] float maxReticleDistance = 10.0f; 
-    [SerializeField] float reticleSpeed = 100.0f;
+    [SerializeField] float minReticleDistance;  
+    [SerializeField] float maxReticleDistance; 
+    [SerializeField] float reticleSpeed;
     private bool increasingDistance = true;          
     private float currentReticleDistance; 
 
@@ -63,9 +63,10 @@ public class PlayerMovement : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {   minReticleDistance = 3.5f;  
+    {   minReticleDistance = 5.0f;  
         maxReticleDistance = 10.0f; 
         reticleSpeed = 6.0f;
+
         if (currentJumps <= 0)
         {
             RestartGame();
@@ -102,7 +103,7 @@ public class PlayerMovement : MonoBehaviour
 
             float jumpForce = currentReticleDistance * speed;
 
-            rb.AddForce(jumpDirection * jumpForce / 150.0f, ForceMode2D.Impulse);
+            rb.AddForce(jumpDirection * jumpForce / 200.0f, ForceMode2D.Impulse);
 
             currentReticleDistance = minReticleDistance;
             // Vector2 initialDirection = (Vector2)(reticlecenter.transform.position - transform.position).normalized;
@@ -163,26 +164,32 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    // 当 Player 与其他物体发生碰撞时触发
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Floor"))
         {
-            isGrounded = true; // 设置为接触地面
-            Debug.Log("Player 接触到地面");
+            isGrounded = true;
+            rb.gravityScale = regGrav;
+        }
+
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            isGrounded = true;
+            rb.gravityScale = wallGrav;
+            reticleSpeed = 10.0f;
         }
     }
 
-    // 当 Player 离开与某个物体的碰撞时触发
     void OnCollisionExit2D(Collision2D collision)
     {
-        // 当玩家不再接触 "Floor" 时，设置为未接触地面
-        if (collision.gameObject.CompareTag("Floor"))
+        if (collision.gameObject.CompareTag("Floor") || collision.gameObject.CompareTag("Wall"))
         {
             isGrounded = false;
-            Debug.Log("Player 离开了地面");
+            rb.gravityScale = regGrav;
+            reticleSpeed = 6.0f;
         }
     }
+
     bool IsGrounded()
     {
         return true;
