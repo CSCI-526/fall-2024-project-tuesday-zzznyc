@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlatformMovement : MonoBehaviour
 {
     public float horizontalDistance = 5f; // 水平移动的距离
-    public float verticalDistance = 3f;   // 垂直移动的距离
+    public float verticalDistance ;   // 垂直移动的距离
     public float speed = 2f;              // 移动速度
     public bool startMovingRight = true;  // 初始水平移动方向
     public bool moveVertical = false;     // 是否同时进行垂直移动
