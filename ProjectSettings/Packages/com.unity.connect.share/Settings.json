@@ -19,7 +19,7 @@
             {
                 "type": "System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
                 "key": "buildOutputDirList",
-                "value": "{\"m_Value\":\"/Users/chris/Documents/GitHub/fall-2024-project-tuesday-zzznyc/Build/v1/Build;/Users/chris/Documents/GitHub/fall-2024-project-tuesday-zzznyc/Build/v1;/Users/chris/Documents/GitHub/fall-2024-project-tuesday-zzznyc/WebGL Builds;;;;;;;\"}"
+                "value": "{\"m_Value\":\"/Users/chris/Documents/GitHub/fall-2024-project-tuesday-zzznyc/Build/newbuild/v1;/Users/chris/Documents/GitHub/fall-2024-project-tuesday-zzznyc/Build/v1/Build;/Users/chris/Documents/GitHub/fall-2024-project-tuesday-zzznyc/Build/v1;/Users/chris/Documents/GitHub/fall-2024-project-tuesday-zzznyc/WebGL Builds;;;;;;\"}"
             }
         ]
     }

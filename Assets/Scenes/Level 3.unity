@@ -3561,7 +3561,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 1010306130}
   firePoint: {fileID: 2026043444}
   projectileSpeed: 5
-  fireRate: 2
+  fireRate: 6
   shootDirection: 2
 --- !u!50 &1716382473
 Rigidbody2D:
@@ -3696,7 +3696,7 @@ Transform:
   m_GameObject: {fileID: 1716382471}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.9, y: 18.62, z: 1}
+  m_LocalPosition: {x: 4.85, y: 19.36, z: 1}
   m_LocalScale: {x: 0.76008, y: 0.74739, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4221,7 +4221,7 @@ Transform:
   m_GameObject: {fileID: 2026043443}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.48, y: 18.62, z: 1}
+  m_LocalPosition: {x: 4.48, y: 18.96, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
