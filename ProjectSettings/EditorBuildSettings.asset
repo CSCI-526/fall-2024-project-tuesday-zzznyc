@@ -24,7 +24,7 @@ EditorBuildSettings:
     path: Assets/Scenes/BackupLevel.unity
     guid: 582d22b045971e444b09aa06b353849e
   - enabled: 1
-    path: Assets/Scenes/Level 3.unity
+    path: Assets/Scenes/Backuplevel 2.unity
     guid: 81278694321ac43f7a40ba500de2a8f7
   - enabled: 1
     path: Assets/Scenes/Level 4.unity
