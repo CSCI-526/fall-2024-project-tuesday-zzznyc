@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
     Vector2 direction;
     [SerializeField] float speed;
     [SerializeField] float regGrav = 1.0f;
-    [SerializeField] float wallGrav = 0.4f;
+    [SerializeField] float wallGrav = 0.0f;
     [SerializeField] int numJumps = 5;
     [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask groundLayer;
@@ -179,8 +179,8 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Wall"))
         {
             isGrounded = true;
-            rb.gravityScale = wallGrav;
-            reticleSpeed = 10.0f;
+            rb.gravityScale = 0.1f;
+            reticleSpeed = 100.0f;
         }
     }
 

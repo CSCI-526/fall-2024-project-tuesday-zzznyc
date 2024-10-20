@@ -416,7 +416,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88cc4f6776d3649178dd8f4834cbdf7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  winText: {fileID: 747811143}
 --- !u!61 &420833951
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3297,11 +3296,11 @@ PrefabInstance:
       objectReference: {fileID: 371335106}
     - target: {fileID: 8354818651384525797, guid: 5e6a4a0c34705b546a6bfbc63a9f0be3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -12.4
+      value: -14.97
       objectReference: {fileID: 0}
     - target: {fileID: 8354818651384525797, guid: 5e6a4a0c34705b546a6bfbc63a9f0be3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.14
+      value: 6.57
       objectReference: {fileID: 0}
     - target: {fileID: 8354818651384525797, guid: 5e6a4a0c34705b546a6bfbc63a9f0be3, type: 3}
       propertyPath: m_LocalPosition.z
