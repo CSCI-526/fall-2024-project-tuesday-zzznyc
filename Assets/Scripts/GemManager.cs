@@ -27,6 +27,7 @@ public class GemManager : MonoBehaviour
         if (currentGem != null)
         {
             Destroy(currentGem); // 销毁当前宝石
+            currentGem = null; // 清除引用，避免重复销毁
         }
 
         StartCoroutine(RespawnGem(2f)); // 2秒后重新生成

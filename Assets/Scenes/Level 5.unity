@@ -482,7 +482,6 @@ GameObject:
   - component: {fileID: 143265364}
   - component: {fileID: 143265363}
   - component: {fileID: 143265362}
-  - component: {fileID: 143265367}
   - component: {fileID: 143265366}
   m_Layer: 0
   m_Name: Bomb
@@ -624,20 +623,6 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
---- !u!114 &143265367
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 143265361}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b460bf9237e514d6e8addbbf2b8838d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gemPrefab: {fileID: 0}
-  spawnPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &166131090
 GameObject:
   m_ObjectHideFlags: 0
@@ -3765,6 +3750,10 @@ PrefabInstance:
       propertyPath: m_Size.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4007059651576174549, guid: 5e6a4a0c34705b546a6bfbc63a9f0be3, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4885350407773365980, guid: 5e6a4a0c34705b546a6bfbc63a9f0be3, type: 3}
       propertyPath: m_SpriteTilingProperty.newSize.x
       value: 1.0728327
@@ -3795,11 +3784,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8354818651384525797, guid: 5e6a4a0c34705b546a6bfbc63a9f0be3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.79
+      value: -10.78
       objectReference: {fileID: 0}
     - target: {fileID: 8354818651384525797, guid: 5e6a4a0c34705b546a6bfbc63a9f0be3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.34
+      value: 4.41
       objectReference: {fileID: 0}
     - target: {fileID: 8354818651384525797, guid: 5e6a4a0c34705b546a6bfbc63a9f0be3, type: 3}
       propertyPath: m_LocalPosition.z
