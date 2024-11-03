@@ -8,6 +8,7 @@ TagManager:
   - Wall
   - BOOM
   - GravityPowerUp
+  - JumpPlatform
   layers:
   - Default
   - TransparentFX

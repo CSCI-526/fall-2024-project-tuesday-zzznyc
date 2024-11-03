@@ -37,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
     private bool gravityEnabled = false;    //Enabled gravity change
     private bool hasChosenGravity = false;
 
+    [SerializeField] float specialPlatformJumpForce = 15f;  // New: Boosted jump force for special platform
     void Start()
     {   
         // minReticleDistance;
@@ -99,6 +100,7 @@ public class PlayerMovement : MonoBehaviour
             //Destroy(other.gameObject); //Destroy object
             hasGravityPowerUp = true; //Get Gravity control object
         }
+        
     }
     void Update()
     {   
@@ -274,6 +276,14 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = true;
             rb.gravityScale = 0.1f;
             reticleSpeed = 100.0f;
+        }
+
+        if (collision.gameObject.CompareTag("JumpPlatform"))
+        {
+            // Apply a boosted jump force automatically
+            Vector2 jumpDirection = Vector2.up;  // Modify if you want a different direction
+            rb.velocity = new Vector2(rb.velocity.x, 0);  // Reset Y velocity for a clean jump
+            rb.AddForce(jumpDirection * specialPlatformJumpForce, ForceMode2D.Impulse);
         }
     }
 
