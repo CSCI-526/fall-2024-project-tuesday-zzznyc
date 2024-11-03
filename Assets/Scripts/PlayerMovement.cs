@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private GameObject projectilePrefab;
 
     Rigidbody2D rb;
-    bool facingRight = true;
+    // bool facingRight = true;
     bool wallSliding;
     bool wallJumping;
 
@@ -62,22 +62,18 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void ShootProjectile()
+    private void ShootProjectile(Vector2 direction, float distance)
     {
-        if (projectilePrefab == null) return;
-        GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+        Vector2 spawnPosition = (Vector2)transform.position + ((Vector2)reticle.transform.position - (Vector2)transform.position).normalized * 0.5f; // 调整0.5f为所需的偏移距离
+        GameObject projectile = Instantiate(projectilePrefab, spawnPosition, Quaternion.identity);
+
         SpriteRenderer projectileRenderer = projectile.GetComponent<SpriteRenderer>();
-        if (projectileRenderer != null)
-        {
-            projectileRenderer.color = reticle.GetComponent<SpriteRenderer>().color;
-        }
+
+        projectileRenderer.color = reticle.GetComponent<SpriteRenderer>().color;
         Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D>();
         if (projectileRb != null)
         {
-            Vector2 direction = ((Vector2)reticle.transform.position - (Vector2)transform.position).normalized;
-            float distance = Vector2.Distance(reticle.transform.position, transform.position);
-            float force = distance * speed;
-            projectileRb.AddForce(direction * force, ForceMode2D.Impulse);
+            projectileRb.AddForce(direction * speed * distance, ForceMode2D.Impulse);
         }
     }
 
@@ -96,9 +92,7 @@ public class PlayerMovement : MonoBehaviour
                 if (currentReticleDistance >= maxReticleDistance)
                 {   
                     increasingDistance = false;
-                }
-
-                
+                }   
             }
             reticle.transform.position = (Vector2)transform.position + direction.normalized * currentReticleDistance / 5.0f;
         }
@@ -127,29 +121,67 @@ public class PlayerMovement : MonoBehaviour
         {
             Application.Quit();
         }
-
-        if (Input.GetKeyDown(KeyCode.Return))
-        {   
-            if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKey(KeyCode.Return) && isCustomColorActive)
         {
-            if (isCustomColorActive)
-            {    ShootProjectile();
-                // 恢复原始颜色
-                SpriteRenderer reticleRenderer = reticle.GetComponent<SpriteRenderer>();
-                if (reticleRenderer != null)
+            reticleSpeed = 6.0f;
+            if (increasingDistance)
+            {
+                currentReticleDistance += reticleSpeed * Time.deltaTime;
+                if (currentReticleDistance >= maxReticleDistance)
                 {
-                    reticleRenderer.color = originalReticleColor;
-                    isCustomColorActive = false;
+                    increasingDistance = false;
                 }
             }
-            // else
-            // {
-            //     // 发射一个球
-               
-            // }
-        }
+            reticle.transform.position = (Vector2)transform.position + direction.normalized * currentReticleDistance / 5.0f;
         }
 
+        if (Input.GetKeyUp(KeyCode.Return) && isCustomColorActive)
+        {
+            if (currentReticleDistance >= maxReticleDistance * 0.99f)
+            {
+                speedMultiplier = 1.1f;
+            }
+            Vector2 jumpDirection = (Vector2)(reticle.transform.position - transform.position).normalized;
+            float jumpForce = currentReticleDistance * speed * speedMultiplier;
+
+            ShootProjectile(jumpDirection, jumpForce);
+            SpriteRenderer reticleRenderer = reticle.GetComponent<SpriteRenderer>();
+            reticleRenderer.color = originalReticleColor;
+            isCustomColorActive = false;
+
+            currentReticleDistance = minReticleDistance;
+            increasingDistance = true;
+        }
+        // if (Input.GetKeyDown(KeyCode.Return) && isCustomColorActive)
+        // {   
+        //     reticleSpeed = 6.0f;
+           
+        //     Debug.Log("increasingDistance  " + increasingDistance);
+        //     if (increasingDistance)
+        //     {   
+        //         currentReticleDistance += reticleSpeed * Time.deltaTime;
+        //         if (currentReticleDistance >= maxReticleDistance)
+        //         {   
+        //             increasingDistance = false;
+        //         }   
+        //     }
+        //     reticle.transform.position = (Vector2)transform.position + direction.normalized * currentReticleDistance / 5.0f; 
+        // }
+
+        // if(Input.GetKeyUp(KeyCode.Return) && isCustomColorActive)
+        // {   
+        //     if (currentReticleDistance >= maxReticleDistance * 0.99f)
+        //     {
+        //         speedMultiplier = 1.1f;
+        //     }
+        //     Vector2 jumpDirection = (Vector2)(reticle.transform.position - transform.position).normalized;
+        //     float jumpForce = currentReticleDistance * speed * speedMultiplier;
+
+        //     ShootProjectile(jumpDirection, jumpForce);
+        //     SpriteRenderer reticleRenderer = reticle.GetComponent<SpriteRenderer>();
+        //     reticleRenderer.color = originalReticleColor;
+        //     isCustomColorActive = false;
+        // }
         // WallSlide();
         // WallJump();
         // Flip();

@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 225763681239423142}
   - component: {fileID: 7000516800803800875}
   - component: {fileID: -833963337099167988}
+  - component: {fileID: -5625616355094698897}
   m_Layer: 0
   m_Name: BOOM
-  m_TagString: Untagged
+  m_TagString: BOOM
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -102,7 +103,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: b8eb0e23a0df4b246a6554c80220cd0a, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -122,7 +123,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 7152168267601021364}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: b8eb0e23a0df4b246a6554c80220cd0a, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -158,3 +159,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &-5625616355094698897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7152168267601021364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64f6034ba60a04855a2e4bc21e617870, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
