@@ -19,7 +19,6 @@ public class PlayerMovement : MonoBehaviour
     Vector2 direction;
     [SerializeField] float speed;
     [SerializeField] float regGrav = 1.0f;
-    [SerializeField] int numJumps = 5;
     [SerializeField] float speedMultiplier;
     [SerializeField] Transform wallCheck;
     [SerializeField] LayerMask wallLayer;
@@ -30,6 +29,9 @@ public class PlayerMovement : MonoBehaviour
     private bool increasingDistance = true;          
     private float currentReticleDistance; 
 
+    private Color originalReticleColor; 
+    private bool isCustomColorActive = false;
+
     void Start()
     {   
         // minReticleDistance;
@@ -38,6 +40,15 @@ public class PlayerMovement : MonoBehaviour
         speedMultiplier = 1.0f;
         rb = GetComponent<Rigidbody2D>();
         currentReticleDistance = minReticleDistance;
+
+        if (reticle != null)
+        {
+            SpriteRenderer reticleRenderer = reticle.GetComponent<SpriteRenderer>();
+            if (reticleRenderer != null)
+            {
+                originalReticleColor = reticleRenderer.color;
+            }
+        }
     }
 
     public void ChangeReticleColor(Color newColor)
@@ -46,18 +57,12 @@ public class PlayerMovement : MonoBehaviour
         if (reticleRenderer != null)
         {
             reticleRenderer.color = newColor;
+            isCustomColorActive = true;
         }
     }
 
     void Update()
     {   
-        
-       
-        if (numJumps <= 0)
-        {
-            RestartGame();
-        }
-
         playerpos = (Vector2)transform.position;
         reticlepos = (Vector2)reticle.transform.position;
         direction = reticlepos - playerpos;
@@ -103,21 +108,32 @@ public class PlayerMovement : MonoBehaviour
             Application.Quit();
         }
 
-        WallSlide();
-        WallJump();
-        Flip();
+        if (Input.GetKeyDown(KeyCode.Return) && isCustomColorActive)
+        {
+            SpriteRenderer reticleRenderer = reticle.GetComponent<SpriteRenderer>();
+            if (reticleRenderer != null)
+            {
+                reticleRenderer.color = originalReticleColor;
+                isCustomColorActive = false; // 重置标记
+                Debug.Log("Reticle color reverted to original.");
+            }
+        }
+
+        // WallSlide();
+        // WallJump();
+        // Flip();
     }
 
-    void Flip()
-    {
-        if ((facingRight && reticle.transform.position.x - transform.position.x < 0) || (!facingRight && reticle.transform.position.x - transform.position.x > 0))
-        {
-            facingRight = !facingRight;
-            Vector3 localScale = transform.localScale;
-            localScale.x *= -1f;
-            transform.localScale = localScale;
-        }
-    }
+    // void Flip()
+    // {
+    //     if ((facingRight && reticle.transform.position.x - transform.position.x < 0) || (!facingRight && reticle.transform.position.x - transform.position.x > 0))
+    //     {
+    //         facingRight = !facingRight;
+    //         Vector3 localScale = transform.localScale;
+    //         localScale.x *= -1f;
+    //         transform.localScale = localScale;
+    //     }
+    // }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -155,31 +171,31 @@ public class PlayerMovement : MonoBehaviour
         return Physics2D.OverlapCircle(wallCheck.position, 0.2f, wallLayer);
     }
 
-    void WallSlide()
-    {
-        if (IsWalled() && !IsGrounded())
-        {
-            wallSliding = true;
-            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -2f, float.MaxValue));
-            reticlecenter.transform.rotation = Quaternion.Lerp(reticlecenter.transform.rotation, Quaternion.Euler(Vector3.forward * Mathf.Clamp(reticlecenter.transform.rotation.z, 10f, 170f)), 30f * Time.deltaTime);
-        }
-        else
-        {
-            wallSliding = false;
-        }
-    }
+    // void WallSlide()
+    // {
+    //     if (IsWalled() && !IsGrounded())
+    //     {
+    //         wallSliding = true;
+    //         rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -2f, float.MaxValue));
+    //         reticlecenter.transform.rotation = Quaternion.Lerp(reticlecenter.transform.rotation, Quaternion.Euler(Vector3.forward * Mathf.Clamp(reticlecenter.transform.rotation.z, 10f, 170f)), 30f * Time.deltaTime);
+    //     }
+    //     else
+    //     {
+    //         wallSliding = false;
+    //     }
+    // }
     
-    void WallJump()
-    {
-        if (wallSliding && Input.GetKeyDown("space"))
-        {
-            rb.velocity = Vector2.zero;
-            playerpos = (Vector2)transform.position;
-            reticlepos = (Vector2)reticle.transform.position;
-            direction = reticlepos - playerpos;
-            rb.AddForce(direction.normalized * speed);
-        }
-    }
+    // void WallJump()
+    // {
+    //     if (wallSliding && Input.GetKeyDown("space"))
+    //     {
+    //         rb.velocity = Vector2.zero;
+    //         playerpos = (Vector2)transform.position;
+    //         reticlepos = (Vector2)reticle.transform.position;
+    //         direction = reticlepos - playerpos;
+    //         rb.AddForce(direction.normalized * speed);
+    //     }
+    // }
 
     void RestartGame()
     {

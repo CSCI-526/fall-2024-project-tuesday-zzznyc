@@ -17,17 +17,26 @@ using UnityEngine;
 using System.Collections;
 
 public class Gem : MonoBehaviour
-{
+{   
+    [SerializeField] private Color gemColors;
     private bool isCollected = false;
 
+    private void Start()
+    {
+        // 获取当前Gem的颜色并赋值给gemColors
+        SpriteRenderer gemRenderer = GetComponent<SpriteRenderer>();
+        if (gemRenderer != null)
+        {
+            gemColors = gemRenderer.color;
+        }
+    }
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player") && !isCollected)
         {
             isCollected = true;
-
-            // 改变 reticle 颜色
-            collision.GetComponent<PlayerMovement>().ChangeReticleColor(Color.blue);
+            collision.GetComponent<PlayerMovement>().ChangeReticleColor(gemColors);
 
             // 暂时隐藏 gem，然后重新激活
             StartCoroutine(TemporaryDisable());
