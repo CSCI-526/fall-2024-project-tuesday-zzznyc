@@ -33,6 +33,10 @@ public class PlayerMovement : MonoBehaviour
     private Color originalReticleColor; 
     private bool isCustomColorActive = false;
 
+    private bool hasGravityPowerUp = false; //Got gravity item
+    private bool gravityEnabled = false;    //Enabled gravity change
+    private bool hasChosenGravity = false;
+
     void Start()
     {   
         // minReticleDistance;
@@ -41,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
         speedMultiplier = 1.0f;
         rb = GetComponent<Rigidbody2D>();
         currentReticleDistance = minReticleDistance;
+        Physics2D.gravity = new Vector2(0, -9.8f);
 
         if (reticle != null)
         {
@@ -76,12 +81,68 @@ public class PlayerMovement : MonoBehaviour
             projectileRb.AddForce(direction * speed * distance, ForceMode2D.Impulse);
         }
     }
-
+    private void ResetReticleColor()
+    {
+        SpriteRenderer reticleRenderer = reticle.GetComponent<SpriteRenderer>();
+        if (reticleRenderer != null)
+        {
+            reticleRenderer.color = originalReticleColor;
+            isCustomColorActive = false;
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("GravityPowerUp"))
+        {
+            //Change Rectile color after pickup gravity object
+            //ChangeReticleColor(Color.green); 
+            //Destroy(other.gameObject); //Destroy object
+            hasGravityPowerUp = true; //Get Gravity control object
+        }
+    }
     void Update()
     {   
         playerpos = (Vector2)transform.position;
         reticlepos = (Vector2)reticle.transform.position;
         direction = reticlepos - playerpos;
+
+        if (Input.GetKeyUp(KeyCode.G) && hasGravityPowerUp)
+        {
+            gravityEnabled = !gravityEnabled; //Activate gravity control
+            hasChosenGravity = false;
+            if (!gravityEnabled)
+            {
+                //Return retile color after disable control
+                Physics2D.gravity = new Vector2(0, -9.8f);
+                ResetReticleColor();
+            }
+        }
+
+        //Change gravity
+        if (gravityEnabled && !hasChosenGravity)
+        {
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                Physics2D.gravity = new Vector2(0, 9.8f); //Up
+                hasChosenGravity = true;
+            }
+            else if (Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                Physics2D.gravity = new Vector2(0, -9.8f); //Down
+                hasChosenGravity = true;
+            }
+            else if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                Physics2D.gravity = new Vector2(-9.8f, 0); //Left
+                hasChosenGravity = true;
+            }
+            else if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                Physics2D.gravity = new Vector2(9.8f, 0); //Right
+                hasChosenGravity = true;
+            }
+        }
+
 
         if (Input.GetKey("space") && isGrounded)
         {   
@@ -121,6 +182,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Application.Quit();
         }
+
         if (Input.GetKey(KeyCode.Return) && isCustomColorActive)
         {
             reticleSpeed = 6.0f;
