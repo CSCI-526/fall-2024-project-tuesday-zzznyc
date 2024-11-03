@@ -115,6 +115,7 @@ public class PlayerMovement : MonoBehaviour
                 //Return retile color after disable control
                 Physics2D.gravity = new Vector2(0, -9.8f);
                 ResetReticleColor();
+                hasGravityPowerUp = false;
             }
         }
 
