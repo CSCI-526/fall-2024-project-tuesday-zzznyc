@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     bool isGrounded = false;
     [SerializeField] GameObject reticle;
     [SerializeField] GameObject reticlecenter;
+    [SerializeField] private GameObject projectilePrefab;
 
     Rigidbody2D rb;
     bool facingRight = true;
@@ -61,6 +62,25 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void ShootProjectile()
+    {
+        if (projectilePrefab == null) return;
+        GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+        SpriteRenderer projectileRenderer = projectile.GetComponent<SpriteRenderer>();
+        if (projectileRenderer != null)
+        {
+            projectileRenderer.color = reticle.GetComponent<SpriteRenderer>().color;
+        }
+        Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D>();
+        if (projectileRb != null)
+        {
+            Vector2 direction = ((Vector2)reticle.transform.position - (Vector2)transform.position).normalized;
+            float distance = Vector2.Distance(reticle.transform.position, transform.position);
+            float force = distance * speed;
+            projectileRb.AddForce(direction * force, ForceMode2D.Impulse);
+        }
+    }
+
     void Update()
     {   
         playerpos = (Vector2)transform.position;
@@ -108,15 +128,26 @@ public class PlayerMovement : MonoBehaviour
             Application.Quit();
         }
 
-        if (Input.GetKeyDown(KeyCode.Return) && isCustomColorActive)
+        if (Input.GetKeyDown(KeyCode.Return))
+        {   
+            if (Input.GetKeyDown(KeyCode.Return))
         {
-            SpriteRenderer reticleRenderer = reticle.GetComponent<SpriteRenderer>();
-            if (reticleRenderer != null)
-            {
-                reticleRenderer.color = originalReticleColor;
-                isCustomColorActive = false; // 重置标记
-                Debug.Log("Reticle color reverted to original.");
+            if (isCustomColorActive)
+            {    ShootProjectile();
+                // 恢复原始颜色
+                SpriteRenderer reticleRenderer = reticle.GetComponent<SpriteRenderer>();
+                if (reticleRenderer != null)
+                {
+                    reticleRenderer.color = originalReticleColor;
+                    isCustomColorActive = false;
+                }
             }
+            // else
+            // {
+            //     // 发射一个球
+               
+            // }
+        }
         }
 
         // WallSlide();
