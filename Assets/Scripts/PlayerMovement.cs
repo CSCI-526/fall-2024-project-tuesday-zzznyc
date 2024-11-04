@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
     private float currentReticleDistance; 
 
     private Color originalReticleColor; 
-    private bool isCustomColorActive = false;
+    private bool TrapBoom = false;
 
     private bool hasGravityPowerUp = false; //Got gravity item
     private bool gravityEnabled = false;    //Enabled gravity change
@@ -64,12 +64,17 @@ public class PlayerMovement : MonoBehaviour
         if (reticleRenderer != null)
         {
             reticleRenderer.color = newColor;
-            isCustomColorActive = true;
+            TrapBoom = true;
         }
     }
 
     private void ShootProjectile(Vector2 direction, float distance)
-    {
+    {   
+        Color reticleColor = reticle.GetComponent<SpriteRenderer>().color;
+        if (reticleColor == Color.green)
+        {
+            return; // 停止执行
+        }
         Vector2 spawnPosition = (Vector2)transform.position + ((Vector2)reticle.transform.position - (Vector2)transform.position).normalized * 0.5f; // 调整0.5f为所需的偏移距离
         GameObject projectile = Instantiate(projectilePrefab, spawnPosition, Quaternion.identity);
 
@@ -88,7 +93,7 @@ public class PlayerMovement : MonoBehaviour
         if (reticleRenderer != null)
         {
             reticleRenderer.color = originalReticleColor;
-            isCustomColorActive = false;
+            TrapBoom = false;
         }
     }
     private void OnTriggerEnter2D(Collider2D other)
@@ -116,7 +121,12 @@ public class PlayerMovement : MonoBehaviour
             {
                 //Return retile color after disable control
                 Physics2D.gravity = new Vector2(0, -9.8f);
-                ResetReticleColor();
+                 Color reticleColor = reticle.GetComponent<SpriteRenderer>().color;
+                if (reticleColor == Color.green)
+                {
+                    ResetReticleColor(); // Only reset if color is green
+                }
+                // ResetReticleColor();
                 hasGravityPowerUp = false;
             }
         }
@@ -186,7 +196,7 @@ public class PlayerMovement : MonoBehaviour
             Application.Quit();
         }
 
-        if (Input.GetKey(KeyCode.Return) && isCustomColorActive)
+        if (Input.GetKey(KeyCode.Return) && TrapBoom)
         {
             reticleSpeed = 6.0f;
             if (increasingDistance)
@@ -200,7 +210,7 @@ public class PlayerMovement : MonoBehaviour
             reticle.transform.position = (Vector2)transform.position + direction.normalized * currentReticleDistance / 5.0f;
         }
 
-        if (Input.GetKeyUp(KeyCode.Return) && isCustomColorActive)
+        if (Input.GetKeyUp(KeyCode.Return) && TrapBoom)
         {
             if (currentReticleDistance >= maxReticleDistance * 0.99f)
             {
@@ -212,12 +222,12 @@ public class PlayerMovement : MonoBehaviour
             ShootProjectile(jumpDirection, jumpForce);
             SpriteRenderer reticleRenderer = reticle.GetComponent<SpriteRenderer>();
             reticleRenderer.color = originalReticleColor;
-            isCustomColorActive = false;
+            TrapBoom = false;
 
             currentReticleDistance = minReticleDistance;
             increasingDistance = true;
         }
-        // if (Input.GetKeyDown(KeyCode.Return) && isCustomColorActive)
+        // if (Input.GetKeyDown(KeyCode.Return) && TrapBoom)
         // {   
         //     reticleSpeed = 6.0f;
            
@@ -233,7 +243,7 @@ public class PlayerMovement : MonoBehaviour
         //     reticle.transform.position = (Vector2)transform.position + direction.normalized * currentReticleDistance / 5.0f; 
         // }
 
-        // if(Input.GetKeyUp(KeyCode.Return) && isCustomColorActive)
+        // if(Input.GetKeyUp(KeyCode.Return) && TrapBoom)
         // {   
         //     if (currentReticleDistance >= maxReticleDistance * 0.99f)
         //     {
@@ -245,7 +255,7 @@ public class PlayerMovement : MonoBehaviour
         //     ShootProjectile(jumpDirection, jumpForce);
         //     SpriteRenderer reticleRenderer = reticle.GetComponent<SpriteRenderer>();
         //     reticleRenderer.color = originalReticleColor;
-        //     isCustomColorActive = false;
+        //     TrapBoom = false;
         // }
         // WallSlide();
         // WallJump();
