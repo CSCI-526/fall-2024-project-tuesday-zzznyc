@@ -160,48 +160,6 @@ public class PlayerMovement : MonoBehaviour
 
             
         }
-        // if (Input.GetKeyUp(KeyCode.G) && hasGravityPowerUp)
-        // {
-        //     gravityEnabled = !gravityEnabled; //Activate gravity control
-        //     hasChosenGravity = false;
-        //     if (!gravityEnabled)
-        //     {
-        //         //Return retile color after disable control
-        //         Physics2D.gravity = new Vector2(0, -9.8f);
-        //          Color reticleColor = reticle.GetComponent<SpriteRenderer>().color;
-        //         if (reticleColor == Color.green)
-        //         {
-        //             ResetReticleColor(); // Only reset if color is green
-        //         }
-        //         // ResetReticleColor();
-        //         hasGravityPowerUp = false;
-        //     }
-        // }
-
-        // //Change gravity
-        // if (gravityEnabled && !hasChosenGravity)
-        // {
-        //     if (Input.GetKeyDown(KeyCode.UpArrow))
-        //     {
-        //         Physics2D.gravity = new Vector2(0, 9.8f); //Up
-        //         hasChosenGravity = true;
-        //     }
-        //     else if (Input.GetKeyDown(KeyCode.DownArrow))
-        //     {
-        //         Physics2D.gravity = new Vector2(0, -9.8f); //Down
-        //         hasChosenGravity = true;
-        //     }
-        //     else if (Input.GetKeyDown(KeyCode.LeftArrow))
-        //     {
-        //         Physics2D.gravity = new Vector2(-9.8f, 0); //Left
-        //         hasChosenGravity = true;
-        //     }
-        //     else if (Input.GetKeyDown(KeyCode.RightArrow))
-        //     {
-        //         Physics2D.gravity = new Vector2(9.8f, 0); //Right
-        //         hasChosenGravity = true;
-        //     }
-        // }
 
 
         if (Input.GetKey("space") && isGrounded)
