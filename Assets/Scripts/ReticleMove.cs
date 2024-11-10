@@ -16,8 +16,8 @@ public class ReticleMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
-        rotatespeed = 100.0f;
-        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+        rotatespeed = 180.0f;
+        if (Input.GetKey(KeyCode.RightArrow))
         {
             /*
             z += Time.deltaTime * rotatespeed;
@@ -29,7 +29,7 @@ public class ReticleMove : MonoBehaviour
             */
             transform.Rotate(new Vector3(0f,0f, -1 * rotatespeed * Time.deltaTime));
         }
-        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.LeftArrow))
         {
             /*
             z += Time.deltaTime * rotatespeed;
