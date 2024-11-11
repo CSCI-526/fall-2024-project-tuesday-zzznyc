@@ -14,7 +14,7 @@ public class MainMenu : MonoBehaviour
     // Help button
     public void Help()
     {
-        SceneManager.LoadScene("Tutorial"); 
+        SceneManager.LoadScene("Level 0"); 
     }
 
     // Quit button
