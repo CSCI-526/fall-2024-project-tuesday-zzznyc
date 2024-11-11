@@ -64,8 +64,9 @@ public class PlayerMovement : MonoBehaviour
         if (reticleRenderer != null)
         {
             reticleRenderer.color = newColor;
-            TrapBoom = true;
+            // TrapBoom = true;
         }
+
     }
 
     private void ShootProjectile(Vector2 direction, float distance)
@@ -90,11 +91,12 @@ public class PlayerMovement : MonoBehaviour
     private void ResetReticleColor()
     {
         SpriteRenderer reticleRenderer = reticle.GetComponent<SpriteRenderer>();
-        if (reticleRenderer != null)
-        {
-            reticleRenderer.color = originalReticleColor;
-            TrapBoom = false;
-        }
+        reticleRenderer.color = originalReticleColor;
+        // if (reticleRenderer != null)
+        // {
+        //     reticleRenderer.color = originalReticleColor;
+        //     TrapBoom = false;
+        // }
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -105,6 +107,10 @@ public class PlayerMovement : MonoBehaviour
             //Destroy(other.gameObject); //Destroy object
             hasGravityPowerUp = true; //Get Gravity control object
         }
+        if(other.CompareTag("BOOM"))
+        {
+            TrapBoom = true;
+        }
         
     }
     void Update()
@@ -112,48 +118,47 @@ public class PlayerMovement : MonoBehaviour
         playerpos = (Vector2)transform.position;
         reticlepos = (Vector2)reticle.transform.position;
         direction = reticlepos - playerpos;
-
-        if (Input.GetKeyUp(KeyCode.G) && hasGravityPowerUp)
+        if (hasGravityPowerUp)
         {
-            gravityEnabled = !gravityEnabled; //Activate gravity control
-            hasChosenGravity = false;
-            if (!gravityEnabled)
+            // Change gravity direction with WASD keys
+            if (Input.GetKeyDown(KeyCode.W))
             {
-                //Return retile color after disable control
-                Physics2D.gravity = new Vector2(0, -9.8f);
-                 Color reticleColor = reticle.GetComponent<SpriteRenderer>().color;
-                if (reticleColor == Color.green)
-                {
-                    ResetReticleColor(); // Only reset if color is green
-                }
-                // ResetReticleColor();
+                Physics2D.gravity = new Vector2(0, 9.8f); // Up
                 hasGravityPowerUp = false;
+                gravityEnabled = true;
+            }
+            else if (Input.GetKeyDown(KeyCode.S))
+            {
+                Physics2D.gravity = new Vector2(0, -9.8f); // Down
+                hasGravityPowerUp = false;
+                gravityEnabled = true;
+            }
+            else if (Input.GetKeyDown(KeyCode.A))
+            {
+                Physics2D.gravity = new Vector2(-9.8f, 0); // Left
+                hasGravityPowerUp = false;
+                gravityEnabled = true;
+            }
+            else if (Input.GetKeyDown(KeyCode.D))
+            {
+                Physics2D.gravity = new Vector2(9.8f, 0); // Right
+                hasGravityPowerUp = false;
+                gravityEnabled = true;
             }
         }
 
-        //Change gravity
-        if (gravityEnabled && !hasChosenGravity)
+        // Reset gravity and reticle color with Return key
+        if (Input.GetKeyDown(KeyCode.Return) && gravityEnabled)
         {
-            if (Input.GetKeyDown(KeyCode.UpArrow))
+            Physics2D.gravity = new Vector2(0, -9.8f); // Reset gravity to default
+            // Color reticleColor = reticle.GetComponent<SpriteRenderer>().color;
+            if (gravityEnabled)
             {
-                Physics2D.gravity = new Vector2(0, 9.8f); //Up
-                hasChosenGravity = true;
+                ResetReticleColor(); // Only reset if color is green
+                gravityEnabled = false; // Disable PowerUp control
             }
-            else if (Input.GetKeyDown(KeyCode.DownArrow))
-            {
-                Physics2D.gravity = new Vector2(0, -9.8f); //Down
-                hasChosenGravity = true;
-            }
-            else if (Input.GetKeyDown(KeyCode.LeftArrow))
-            {
-                Physics2D.gravity = new Vector2(-9.8f, 0); //Left
-                hasChosenGravity = true;
-            }
-            else if (Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                Physics2D.gravity = new Vector2(9.8f, 0); //Right
-                hasChosenGravity = true;
-            }
+
+            
         }
 
 
@@ -220,9 +225,14 @@ public class PlayerMovement : MonoBehaviour
             float jumpForce = currentReticleDistance * speed * speedMultiplier;
 
             ShootProjectile(jumpDirection, jumpForce);
-            SpriteRenderer reticleRenderer = reticle.GetComponent<SpriteRenderer>();
-            reticleRenderer.color = originalReticleColor;
-            TrapBoom = false;
+            if (TrapBoom)
+            {
+                ResetReticleColor();
+                TrapBoom = false;
+            }
+            // SpriteRenderer reticleRenderer = reticle.GetComponent<SpriteRenderer>();
+            // reticleRenderer.color = originalReticleColor;
+            
 
             currentReticleDistance = minReticleDistance;
             increasingDistance = true;
