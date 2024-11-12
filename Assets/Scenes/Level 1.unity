@@ -563,7 +563,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Stand on Blue Try "S"
+  m_text: "Stand on Blue Try \" \u2193 \""
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3159,7 +3159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadingText: {fileID: 495723743}
-  message: Stand on Blue Try "S"
+  message: "Stand on Blue Try \" \u2193 \""
   customDisplayTime: 3
   customFadeTime: 2
 --- !u!4 &1664288170
