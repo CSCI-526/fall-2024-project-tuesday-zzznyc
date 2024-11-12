@@ -23,7 +23,7 @@ public class Gem : MonoBehaviour
 
     private void Start()
     {
-        // 获取当前Gem的颜色并赋值给gemColors
+
         SpriteRenderer gemRenderer = GetComponent<SpriteRenderer>();
         if (gemRenderer != null)
         {
@@ -31,14 +31,29 @@ public class Gem : MonoBehaviour
         }
     }
     
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player") && !isCollected)
         {
             isCollected = true;
-            collision.GetComponent<PlayerMovement>().ChangeReticleColor(gemColors);
+            PlayerMovement player = collision.GetComponent<PlayerMovement>();
 
-            // 暂时隐藏 gem，然后重新激活
+            // 检查 gem 的颜色，并根据颜色更改 player 或 reticle 的颜色
+            if (gemColors == Color.green)
+            {   
+                 Debug.Log("greengreengreengreen");
+                player.ChangePlayerColor(Color.green); // 如果 gem 是绿色，则更改 player 的颜色为绿色
+            }
+            else if (gameObject.CompareTag("BOOM"))
+            {   
+                Debug.Log("BoomBoomBoomBoomBoom");
+                player.ChangeReticleColor(Color.red); // 如果 Gem 的标签为 Boom，则将 Player 的颜色更改为红色
+            }
+            else if (gemColors == Color.red)
+            {   Debug.Log("redredredredred");
+                player.ChangeReticleColor(Color.red); // 如果 gem 是红色，则更改 reticle 的颜色为红色
+            }
             StartCoroutine(TemporaryDisable());
         }
     }

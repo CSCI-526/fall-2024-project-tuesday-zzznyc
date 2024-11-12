@@ -31,11 +31,11 @@ public class PlayerMovement : MonoBehaviour
     private float currentReticleDistance; 
 
     private Color originalReticleColor; 
-    private bool TrapBoom = false;
+    // private bool TrapBoom = false;
 
-    private bool hasGravityPowerUp = false; //Got gravity item
-    private bool gravityEnabled = false;    //Enabled gravity change
-    private bool hasChosenGravity = false;
+    // private bool hasGravityPowerUp = false; //Got gravity item
+    // private bool gravityEnabled = false;    //Enabled gravity change
+    // private bool hasChosenGravity = false;
 
     [SerializeField] float specialPlatformJumpForce = 15f;  // New: Boosted jump force for special platform
     void Start()
@@ -58,23 +58,12 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void ChangeReticleColor(Color newColor)
-    {
-        SpriteRenderer reticleRenderer = reticle.GetComponent<SpriteRenderer>();
-        if (reticleRenderer != null)
-        {
-            reticleRenderer.color = newColor;
-            // TrapBoom = true;
-        }
-
-    }
-
     private void ShootProjectile(Vector2 direction, float distance)
     {   
         Color reticleColor = reticle.GetComponent<SpriteRenderer>().color;
         if (reticleColor == Color.green)
         {
-            return; // 停止执行
+            return;
         }
         Vector2 spawnPosition = (Vector2)transform.position + ((Vector2)reticle.transform.position - (Vector2)transform.position).normalized * 0.5f; // 调整0.5f为所需的偏移距离
         GameObject projectile = Instantiate(projectilePrefab, spawnPosition, Quaternion.identity);
@@ -88,77 +77,39 @@ public class PlayerMovement : MonoBehaviour
             projectileRb.AddForce(direction * speed * distance, ForceMode2D.Impulse);
         }
     }
-    private void ResetReticleColor()
-    {
-        SpriteRenderer reticleRenderer = reticle.GetComponent<SpriteRenderer>();
-        reticleRenderer.color = originalReticleColor;
-        // if (reticleRenderer != null)
-        // {
-        //     reticleRenderer.color = originalReticleColor;
-        //     TrapBoom = false;
-        // }
-    }
+    
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("GravityPowerUp"))
-        {
-            //Change Rectile color after pickup gravity object
-            //ChangeReticleColor(Color.green); 
-            //Destroy(other.gameObject); //Destroy object
-            hasGravityPowerUp = true; //Get Gravity control object
-        }
-        if(other.CompareTag("BOOM"))
-        {
-            TrapBoom = true;
-        }
-        
+        // if (other.CompareTag("GravityPowerUp"))
+        // {
+        //     // hasGravityPowerUp = true;
+        // }
+        // if(other.CompareTag("BOOM"))
+        // {
+        //     TrapBoom = true;
+        // }   
     }
+    
+    
+
     void Update()
     {   
+        // Debug.Log("isGrounded  " + isGrounded);
         playerpos = (Vector2)transform.position;
         reticlepos = (Vector2)reticle.transform.position;
         direction = reticlepos - playerpos;
-        if (hasGravityPowerUp)
-        {
-            // Change gravity direction with WASD keys
-            if (Input.GetKeyDown(KeyCode.W))
-            {
-                Physics2D.gravity = new Vector2(0, 9.8f); // Up
-                hasGravityPowerUp = false;
-                gravityEnabled = true;
-            }
-            else if (Input.GetKeyDown(KeyCode.S))
-            {
-                Physics2D.gravity = new Vector2(0, -9.8f); // Down
-                hasGravityPowerUp = false;
-                gravityEnabled = true;
-            }
-            else if (Input.GetKeyDown(KeyCode.A))
-            {
-                Physics2D.gravity = new Vector2(-9.8f, 0); // Left
-                hasGravityPowerUp = false;
-                gravityEnabled = true;
-            }
-            else if (Input.GetKeyDown(KeyCode.D))
-            {
-                Physics2D.gravity = new Vector2(9.8f, 0); // Right
-                hasGravityPowerUp = false;
-                gravityEnabled = true;
-            }
+
+        if (IsPlayerColorEqual(Color.green))
+        {    
+            CheckGravityInput();
         }
-
-        // Reset gravity and reticle color with Return key
-        if (Input.GetKeyDown(KeyCode.Return) && gravityEnabled)
-        {
-            Physics2D.gravity = new Vector2(0, -9.8f); // Reset gravity to default
-            // Color reticleColor = reticle.GetComponent<SpriteRenderer>().color;
-            if (gravityEnabled)
-            {
-                ResetReticleColor(); // Only reset if color is green
-                gravityEnabled = false; // Disable PowerUp control
+        if (Input.GetKeyDown(KeyCode.Return) && IsPlayerColorEqual(Color.green))
+        {   
+            if(IsReticleColorEqual(Color.red)){
+                return;
             }
-
-            
+            Physics2D.gravity = new Vector2(0, -9.8f); // Reset gravity to default
+            ResetPlayerColor(); // Only reset if color is green
         }
 
 
@@ -191,17 +142,7 @@ public class PlayerMovement : MonoBehaviour
             increasingDistance = true;
         }
 
-        if (Input.GetKeyUp("r"))
-        {
-            string currentscene = SceneManager.GetActiveScene().name;
-            SceneManager.LoadScene(currentscene);
-        }
-        if (Input.GetKey("escape"))
-        {
-            Application.Quit();
-        }
-
-        if (Input.GetKey(KeyCode.Return) && TrapBoom)
+        if (Input.GetKey(KeyCode.Return) && IsReticleColorEqual(Color.red))
         {
             reticleSpeed = 6.0f;
             if (increasingDistance)
@@ -215,7 +156,7 @@ public class PlayerMovement : MonoBehaviour
             reticle.transform.position = (Vector2)transform.position + direction.normalized * currentReticleDistance / 5.0f;
         }
 
-        if (Input.GetKeyUp(KeyCode.Return) && TrapBoom)
+        if (Input.GetKeyUp(KeyCode.Return) && IsReticleColorEqual(Color.red))
         {
             if (currentReticleDistance >= maxReticleDistance * 0.99f)
             {
@@ -225,75 +166,35 @@ public class PlayerMovement : MonoBehaviour
             float jumpForce = currentReticleDistance * speed * speedMultiplier;
 
             ShootProjectile(jumpDirection, jumpForce);
-            if (TrapBoom)
-            {
-                ResetReticleColor();
-                TrapBoom = false;
-            }
-            // SpriteRenderer reticleRenderer = reticle.GetComponent<SpriteRenderer>();
-            // reticleRenderer.color = originalReticleColor;
             
-
+            ResetReticleColor();
             currentReticleDistance = minReticleDistance;
             increasingDistance = true;
         }
-        // if (Input.GetKeyDown(KeyCode.Return) && TrapBoom)
-        // {   
-        //     reticleSpeed = 6.0f;
-           
-        //     Debug.Log("increasingDistance  " + increasingDistance);
-        //     if (increasingDistance)
-        //     {   
-        //         currentReticleDistance += reticleSpeed * Time.deltaTime;
-        //         if (currentReticleDistance >= maxReticleDistance)
-        //         {   
-        //             increasingDistance = false;
-        //         }   
-        //     }
-        //     reticle.transform.position = (Vector2)transform.position + direction.normalized * currentReticleDistance / 5.0f; 
-        // }
 
-        // if(Input.GetKeyUp(KeyCode.Return) && TrapBoom)
-        // {   
-        //     if (currentReticleDistance >= maxReticleDistance * 0.99f)
-        //     {
-        //         speedMultiplier = 1.1f;
-        //     }
-        //     Vector2 jumpDirection = (Vector2)(reticle.transform.position - transform.position).normalized;
-        //     float jumpForce = currentReticleDistance * speed * speedMultiplier;
+        if (Input.GetKeyUp("r"))
+        {
+            string currentscene = SceneManager.GetActiveScene().name;
+            SceneManager.LoadScene(currentscene);
+        }
+        if (Input.GetKey("escape"))
+        {
+            Application.Quit();
+        }
 
-        //     ShootProjectile(jumpDirection, jumpForce);
-        //     SpriteRenderer reticleRenderer = reticle.GetComponent<SpriteRenderer>();
-        //     reticleRenderer.color = originalReticleColor;
-        //     TrapBoom = false;
-        // }
-        // WallSlide();
-        // WallJump();
-        // Flip();
     }
-
-    // void Flip()
-    // {
-    //     if ((facingRight && reticle.transform.position.x - transform.position.x < 0) || (!facingRight && reticle.transform.position.x - transform.position.x > 0))
-    //     {
-    //         facingRight = !facingRight;
-    //         Vector3 localScale = transform.localScale;
-    //         localScale.x *= -1f;
-    //         transform.localScale = localScale;
-    //     }
-    // }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Floor"))
         {
-            isGrounded = true;
+            
             rb.gravityScale = regGrav;
         }
 
         if (collision.gameObject.CompareTag("Wall"))
         {
-            isGrounded = true;
+            // isGrounded = true;
             rb.gravityScale = 0.1f;
             reticleSpeed = 100.0f;
         }
@@ -305,6 +206,7 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, 0);  // Reset Y velocity for a clean jump
             rb.AddForce(jumpDirection * specialPlatformJumpForce, ForceMode2D.Impulse);
         }
+        isGrounded = true;
     }
 
     void OnCollisionExit2D(Collision2D collision)
@@ -317,44 +219,94 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    bool IsGrounded()
-    {
-        return true;
-    }
-
-    bool IsWalled()
-    {
-        return Physics2D.OverlapCircle(wallCheck.position, 0.2f, wallLayer);
-    }
-
-    // void WallSlide()
-    // {
-    //     if (IsWalled() && !IsGrounded())
-    //     {
-    //         wallSliding = true;
-    //         rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -2f, float.MaxValue));
-    //         reticlecenter.transform.rotation = Quaternion.Lerp(reticlecenter.transform.rotation, Quaternion.Euler(Vector3.forward * Mathf.Clamp(reticlecenter.transform.rotation.z, 10f, 170f)), 30f * Time.deltaTime);
-    //     }
-    //     else
-    //     {
-    //         wallSliding = false;
-    //     }
-    // }
-    
-    // void WallJump()
-    // {
-    //     if (wallSliding && Input.GetKeyDown("space"))
-    //     {
-    //         rb.velocity = Vector2.zero;
-    //         playerpos = (Vector2)transform.position;
-    //         reticlepos = (Vector2)reticle.transform.position;
-    //         direction = reticlepos - playerpos;
-    //         rb.AddForce(direction.normalized * speed);
-    //     }
-    // }
-
     void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    
+    public bool IsPlayerColorEqual(Color targetColor)
+    {
+        SpriteRenderer playerRenderer = GetComponent<SpriteRenderer>();
+        if (playerRenderer != null)
+        {
+            return playerRenderer.color == targetColor;
+        }
+        return false;
+    }
+
+
+    public bool IsReticleColorEqual(Color targetColor)
+    {
+        if (reticle != null)
+        {
+            SpriteRenderer reticleRenderer = reticle.GetComponent<SpriteRenderer>();
+            if (reticleRenderer != null)
+            {
+                return reticleRenderer.color == targetColor;
+            }
+        }
+        return false;
+    }
+    
+    public void ChangePlayerColor(Color newColor)
+    {
+        SpriteRenderer playerRenderer = GetComponent<SpriteRenderer>();
+        if (playerRenderer != null)
+        {
+            playerRenderer.color = newColor;
+        }
+    }
+
+    public void ChangeReticleColor(Color newColor)
+    {
+        SpriteRenderer reticleRenderer = reticle.GetComponent<SpriteRenderer>();
+        if (reticleRenderer != null)
+        {
+            reticleRenderer.color = newColor;
+        }
+    }
+
+    public void ResetPlayerColor()
+    {
+        SpriteRenderer playerRenderer = GetComponent<SpriteRenderer>();
+        if (playerRenderer != null)
+        {
+            playerRenderer.color = Color.white; // 将颜色重置为白色，或你可以替换为初始颜色
+        }
+    }
+
+    private void ResetReticleColor()
+    {
+        SpriteRenderer reticleRenderer = reticle.GetComponent<SpriteRenderer>();
+        reticleRenderer.color = originalReticleColor;
+    }
+
+    private void CheckGravityInput()
+    {
+        // 根据键盘输入来设置重力方向
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            SetGravityDirection(Vector2.up); // 上
+        }
+        else if (Input.GetKeyDown(KeyCode.S))
+        {
+            SetGravityDirection(Vector2.down); // 下
+        }
+        else if (Input.GetKeyDown(KeyCode.A))
+        {
+            SetGravityDirection(Vector2.left); // 左
+        }
+        else if (Input.GetKeyDown(KeyCode.D))
+        {
+            SetGravityDirection(Vector2.right); // 右
+        }
+    }
+
+    private void SetGravityDirection(Vector2 direction)
+    {
+        Physics2D.gravity = direction * 9.8f; // 乘以 9.8f 设置重力方向
+        // hasGravityPowerUp = false; // 重置 power-up 状态
+        // gravityEnabled = true; // 启用重力控制
     }
 }
