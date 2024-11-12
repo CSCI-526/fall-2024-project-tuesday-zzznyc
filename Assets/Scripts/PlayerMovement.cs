@@ -59,10 +59,10 @@ public class PlayerMovement : MonoBehaviour
         playerpos = (Vector2)transform.position;
         reticlepos = (Vector2)reticle.transform.position;
         direction = reticlepos - playerpos;
-
+        // Debug.Log("GravityNotUsedGravityNotUsed111");
         if (IsPlayerColorEqual(Color.green) && GravityNotUsed)
         {   
-            Debug.Log("CheckGravityInputCheckGravityInput");
+            Debug.Log("GravityNotUsedGravityNotUsed222");
             CheckGravityInput();
             
         }
@@ -152,40 +152,50 @@ public class PlayerMovement : MonoBehaviour
     {
     }
     
-    void OnCollisionEnter2D(Collision2D collision)
+    private int contactCount = 0; // 用于跟踪接触物体的数量
+
+void OnCollisionEnter2D(Collision2D collision)
+{
+    if (collision.gameObject.CompareTag("Floor") || collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("JumpPlatform"))
     {
-        if (collision.gameObject.CompareTag("Floor"))
-        {
-            
-            rb.gravityScale = regGrav;
-        }
-
-        if (collision.gameObject.CompareTag("Wall"))
-        {
-            // isGrounded = true;
-            rb.gravityScale = 0.1f;
-            reticleSpeed = 100.0f;
-        }
-
-        if (collision.gameObject.CompareTag("JumpPlatform"))
-        {
-            // Apply a boosted jump force automatically
-            Vector2 jumpDirection = Vector2.up;  // Modify if you want a different direction
-            rb.velocity = new Vector2(rb.velocity.x, 0);  // Reset Y velocity for a clean jump
-            rb.AddForce(jumpDirection * specialPlatformJumpForce, ForceMode2D.Impulse);
-        }
-        isGrounded = true;
+        contactCount++;
+        isGrounded = true; // 有接触时，设置isGrounded为true
     }
 
-    void OnCollisionExit2D(Collision2D collision)
+    if (collision.gameObject.CompareTag("Floor"))
     {
-        if (collision.gameObject.CompareTag("Floor") || collision.gameObject.CompareTag("Wall"))
+        rb.gravityScale = regGrav;
+    }
+
+    if (collision.gameObject.CompareTag("Wall"))
+    {
+        rb.gravityScale = 0.1f;
+        reticleSpeed = 100.0f;
+    }
+
+    if (collision.gameObject.CompareTag("JumpPlatform"))
+    {
+        // Apply a boosted jump force automatically
+        Vector2 jumpDirection = Vector2.up;  // Modify if you want a different direction
+        rb.velocity = new Vector2(rb.velocity.x, 0);  // Reset Y velocity for a clean jump
+        rb.AddForce(jumpDirection * specialPlatformJumpForce, ForceMode2D.Impulse);
+    }
+}
+
+void OnCollisionExit2D(Collision2D collision)
+{
+    if (collision.gameObject.CompareTag("Floor") || collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("JumpPlatform"))
+    {
+        contactCount--;
+        if (contactCount <= 0)
         {
-            isGrounded = false;
+            contactCount = 0; // 防止计数器变为负数
+            isGrounded = false; // 没有接触物体时，设置isGrounded为false
             rb.gravityScale = regGrav;
             reticleSpeed = 6.0f;
         }
     }
+}
 
     void RestartGame()
     {
@@ -276,8 +286,6 @@ public class PlayerMovement : MonoBehaviour
     {
         Physics2D.gravity = direction * 9.8f; // 乘以 9.8f 设置重力方向
         GravityNotUsed = false;
-        // hasGravityPowerUp = false; // 重置 power-up 状态
-        // gravityEnabled = true; // 启用重力控制
     }
 
     private void ShootProjectile(Vector2 direction, float distance)
@@ -298,5 +306,11 @@ public class PlayerMovement : MonoBehaviour
         {
             projectileRb.AddForce(direction * speed * distance, ForceMode2D.Impulse);
         }
+    }
+
+    public void SetGravityNotUsed(bool value)
+    {
+        GravityNotUsed = value;
+        Debug.Log(" GravityNotUsed = value;" +  GravityNotUsed);
     }
 }
