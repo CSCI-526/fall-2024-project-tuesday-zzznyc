@@ -12,9 +12,6 @@ public class PlayerMovement : MonoBehaviour
 
     Rigidbody2D rb;
     // bool facingRight = true;
-    bool wallSliding;
-    bool wallJumping;
-
     Vector2 playerpos;
     Vector2 reticlepos;
     Vector2 direction;
@@ -33,15 +30,13 @@ public class PlayerMovement : MonoBehaviour
     private Color originalReticleColor; 
     // private bool TrapBoom = false;
 
-    // private bool hasGravityPowerUp = false; //Got gravity item
+    private bool GravityNotUsed = true; //Got gravity item
     // private bool gravityEnabled = false;    //Enabled gravity change
     // private bool hasChosenGravity = false;
 
     [SerializeField] float specialPlatformJumpForce = 15f;  // New: Boosted jump force for special platform
     void Start()
-    {   
-        // minReticleDistance;
-        // maxReticleDistance = 6.0f;
+    {           
         speed = 1.0f;
         speedMultiplier = 1.0f;
         rb = GetComponent<Rigidbody2D>();
@@ -57,41 +52,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
-
-    private void ShootProjectile(Vector2 direction, float distance)
-    {   
-        Color reticleColor = reticle.GetComponent<SpriteRenderer>().color;
-        if (reticleColor == Color.green)
-        {
-            return;
-        }
-        Vector2 spawnPosition = (Vector2)transform.position + ((Vector2)reticle.transform.position - (Vector2)transform.position).normalized * 0.5f; // 调整0.5f为所需的偏移距离
-        GameObject projectile = Instantiate(projectilePrefab, spawnPosition, Quaternion.identity);
-
-        SpriteRenderer projectileRenderer = projectile.GetComponent<SpriteRenderer>();
-
-        projectileRenderer.color = reticle.GetComponent<SpriteRenderer>().color;
-        Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D>();
-        if (projectileRb != null)
-        {
-            projectileRb.AddForce(direction * speed * distance, ForceMode2D.Impulse);
-        }
-    }
     
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        // if (other.CompareTag("GravityPowerUp"))
-        // {
-        //     // hasGravityPowerUp = true;
-        // }
-        // if(other.CompareTag("BOOM"))
-        // {
-        //     TrapBoom = true;
-        // }   
-    }
-    
-    
-
     void Update()
     {   
         // Debug.Log("isGrounded  " + isGrounded);
@@ -99,9 +60,11 @@ public class PlayerMovement : MonoBehaviour
         reticlepos = (Vector2)reticle.transform.position;
         direction = reticlepos - playerpos;
 
-        if (IsPlayerColorEqual(Color.green))
-        {    
+        if (IsPlayerColorEqual(Color.green) && GravityNotUsed)
+        {   
+            Debug.Log("CheckGravityInputCheckGravityInput");
             CheckGravityInput();
+            
         }
         if (Input.GetKeyDown(KeyCode.Return) && IsPlayerColorEqual(Color.green))
         {   
@@ -110,6 +73,7 @@ public class PlayerMovement : MonoBehaviour
             }
             Physics2D.gravity = new Vector2(0, -9.8f); // Reset gravity to default
             ResetPlayerColor(); // Only reset if color is green
+            GravityNotUsed = true;
         }
 
 
@@ -184,6 +148,10 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+     private void OnTriggerEnter2D(Collider2D other)
+    {
+    }
+    
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Floor"))
@@ -283,7 +251,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void CheckGravityInput()
-    {
+    {   
         // 根据键盘输入来设置重力方向
         if (Input.GetKeyDown(KeyCode.W))
         {
@@ -301,12 +269,34 @@ public class PlayerMovement : MonoBehaviour
         {
             SetGravityDirection(Vector2.right); // 右
         }
+       
     }
 
     private void SetGravityDirection(Vector2 direction)
     {
         Physics2D.gravity = direction * 9.8f; // 乘以 9.8f 设置重力方向
+        GravityNotUsed = false;
         // hasGravityPowerUp = false; // 重置 power-up 状态
         // gravityEnabled = true; // 启用重力控制
+    }
+
+    private void ShootProjectile(Vector2 direction, float distance)
+    {   
+        Color reticleColor = reticle.GetComponent<SpriteRenderer>().color;
+        if (reticleColor == Color.green)
+        {
+            return;
+        }
+        Vector2 spawnPosition = (Vector2)transform.position + ((Vector2)reticle.transform.position - (Vector2)transform.position).normalized * 0.5f; // 调整0.5f为所需的偏移距离
+        GameObject projectile = Instantiate(projectilePrefab, spawnPosition, Quaternion.identity);
+
+        SpriteRenderer projectileRenderer = projectile.GetComponent<SpriteRenderer>();
+
+        projectileRenderer.color = reticle.GetComponent<SpriteRenderer>().color;
+        Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D>();
+        if (projectileRb != null)
+        {
+            projectileRb.AddForce(direction * speed * distance, ForceMode2D.Impulse);
+        }
     }
 }

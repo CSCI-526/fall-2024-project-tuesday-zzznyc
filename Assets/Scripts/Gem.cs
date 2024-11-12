@@ -42,16 +42,17 @@ public class Gem : MonoBehaviour
             // 检查 gem 的颜色，并根据颜色更改 player 或 reticle 的颜色
             if (gemColors == Color.green)
             {   
-                 Debug.Log("greengreengreengreen");
+                // Debug.Log("greengreengreengreen");
                 player.ChangePlayerColor(Color.green); // 如果 gem 是绿色，则更改 player 的颜色为绿色
             }
             else if (gameObject.CompareTag("BOOM"))
             {   
-                Debug.Log("BoomBoomBoomBoomBoom");
+                // Debug.Log("BoomBoomBoomBoomBoom");
                 player.ChangeReticleColor(Color.red); // 如果 Gem 的标签为 Boom，则将 Player 的颜色更改为红色
             }
             else if (gemColors == Color.red)
-            {   Debug.Log("redredredredred");
+            {   
+                // Debug.Log("redredredredred");
                 player.ChangeReticleColor(Color.red); // 如果 gem 是红色，则更改 reticle 的颜色为红色
             }
             StartCoroutine(TemporaryDisable());
