@@ -66,11 +66,11 @@ public class PlayerMovement : MonoBehaviour
             CheckGravityInput();
             
         }
-        if (Input.GetKeyDown(KeyCode.Return) && IsPlayerColorEqual(Color.green))
+        if (Input.GetKeyDown(KeyCode.G) && IsPlayerColorEqual(Color.green))
         {   
-            if(IsReticleColorEqual(Color.red)){
+            /*if(IsReticleColorEqual(Color.red)){
                 return;
-            }
+            }*/
             Physics2D.gravity = new Vector2(0, -9.8f); // Reset gravity to default
             ResetPlayerColor(); // Only reset if color is green
             GravityNotUsed = true;
