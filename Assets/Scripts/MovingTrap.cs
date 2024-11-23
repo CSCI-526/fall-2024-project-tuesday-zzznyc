@@ -29,5 +29,10 @@ public class MovingTrap : MonoBehaviour
             // Restart the current level
             UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
         }
+        else if (other.gameObject.CompareTag("BOOM"))
+        {
+            //Destory enemy
+            Destroy(gameObject);
+        }
     }
 }
