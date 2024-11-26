@@ -1,19 +1,21 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CheckPoint : MonoBehaviour
 {
+    private CheckpointManager checkpointManager;
+
+    void Start()
+    {
+        checkpointManager = FindObjectOfType<CheckpointManager>(); // 查找 CheckpointManager
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // 检测玩家是否碰到检查点
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && checkpointManager != null)
         {
-            // 更新玩家当前检查点位置
-            PlayerMovement player = other.GetComponent<PlayerMovement>();
-            if (player != null)
-            {
-                player.SetCurrentCheckpoint(transform.position);
-                Debug.Log("CheckPoint activated at: " + transform.position);
-            }
+            checkpointManager.SetCheckpoint(transform.position); // 更新检查点
         }
     }
 }

@@ -138,13 +138,25 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyUp("r"))
         {
-            string currentscene = SceneManager.GetActiveScene().name;
-            SceneManager.LoadScene(currentscene);
+            // 调用 CheckpointManager 来重生玩家
+            CheckpointManager checkpointManager = FindObjectOfType<CheckpointManager>();
+            if (checkpointManager != null)
+            {
+                checkpointManager.RespawnPlayer(); // 使用检查点重生玩家
+            }
+            else
+            {
+                // 如果 CheckpointManager 不存在，回退到重置关卡的逻辑
+                string currentscene = SceneManager.GetActiveScene().name;
+                SceneManager.LoadScene(currentscene);
+            }
         }
+
         if (Input.GetKey("escape"))
         {
             Application.Quit();
         }
+
 
     }
 
