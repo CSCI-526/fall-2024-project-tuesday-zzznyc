@@ -31,7 +31,13 @@ public class BOOM : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Floor"))
         {
-            Destroy(gameObject);  // Destroy immediately if it hits a wall or floor
+            Destroy(gameObject);  // Destroy immediately
+        }
+        if (collision.gameObject.CompareTag("Trap") || collision.gameObject.CompareTag("Enemy"))
+        {
+            Debug.Log($"Collision with: {collision.gameObject.name}");
+            Destroy(gameObject);
+            Destroy(collision.gameObject); // Destroy immediately if it hits ANYTHING
         }
     }
 }

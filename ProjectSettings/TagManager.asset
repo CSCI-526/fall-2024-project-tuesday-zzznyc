@@ -9,6 +9,8 @@ TagManager:
   - BOOM
   - GravityPowerUp
   - JumpPlatform
+  - Trap
+  - Enemy
   layers:
   - Default
   - TransparentFX
