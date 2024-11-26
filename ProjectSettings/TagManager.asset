@@ -11,6 +11,7 @@ TagManager:
   - JumpPlatform
   - Trap
   - Enemy
+  - CheckPoint
   layers:
   - Default
   - TransparentFX
