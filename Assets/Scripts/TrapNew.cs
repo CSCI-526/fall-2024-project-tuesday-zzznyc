@@ -25,7 +25,7 @@ public class TrapLV3 : MonoBehaviour
         else if (collision.gameObject.CompareTag("BOOM"))
         {
             // 子弹碰到陷阱时摧毁子弹
-            Destroy(collision.gameObject);
+            Destroy(gameObject);
         }
     }
 }
