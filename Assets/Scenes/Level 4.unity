@@ -800,9 +800,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 453952468}
-  - component: {fileID: 453952469}
   - component: {fileID: 453952467}
   - component: {fileID: 453952466}
+  - component: {fileID: 453952469}
   m_Layer: 0
   m_Name: checkpoint
   m_TagString: CheckPoint
@@ -921,7 +921,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 453952465}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77b172d0898be479a9385bb7b8a89667, type: 3}
+  m_Script: {fileID: 11500000, guid: 002d4113cd568414592777a4482a0413, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &455916975
@@ -2498,7 +2498,7 @@ GameObject:
   - component: {fileID: 1362290483}
   - component: {fileID: 1362290486}
   - component: {fileID: 1362290485}
-  - component: {fileID: 1362290484}
+  - component: {fileID: 1362290487}
   m_Layer: 0
   m_Name: Trap
   m_TagString: Untagged
@@ -2521,18 +2521,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 531656278}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1362290484
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1362290482}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d676c2f6c4100409189eb3b8b1a899e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &1362290485
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2630,6 +2618,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1362290487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1362290482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d5833b19788c104292604bcf4e07ffa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  respawnPosition: {x: -12.48, y: -1.2}
 --- !u!1001 &1376042580
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4119,11 +4120,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8354818651384525797, guid: 5e6a4a0c34705b546a6bfbc63a9f0be3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -18.51
+      value: -18.34
       objectReference: {fileID: 0}
     - target: {fileID: 8354818651384525797, guid: 5e6a4a0c34705b546a6bfbc63a9f0be3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.48
+      value: 3.16
       objectReference: {fileID: 0}
     - target: {fileID: 8354818651384525797, guid: 5e6a4a0c34705b546a6bfbc63a9f0be3, type: 3}
       propertyPath: m_LocalPosition.z
