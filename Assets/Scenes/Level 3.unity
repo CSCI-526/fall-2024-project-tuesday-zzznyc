@@ -1402,7 +1402,6 @@ RectTransform:
   - {fileID: 636599497}
   - {fileID: 221464570}
   - {fileID: 807966913}
-  - {fileID: 2049345620}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1933,8 +1932,8 @@ Transform:
   m_GameObject: {fileID: 870511600}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.7017748, w: 0.71239895}
-  m_LocalPosition: {x: -4.37, y: 8.94, z: 2.2568073}
-  m_LocalScale: {x: 1.46636, y: 2.10679, z: 0.7}
+  m_LocalPosition: {x: -4.72, y: 8.64, z: 2.2568073}
+  m_LocalScale: {x: 0.9456556, y: 1.0989017, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1948,9 +1947,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 870511600}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d676c2f6c4100409189eb3b8b1a899e7, type: 3}
+  m_Script: {fileID: 11500000, guid: eba75b7ae076843778ea0733c62ca7a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 3
+  upperBoundary: -2.5
+  lowerBoundary: -5
 --- !u!1 &870622706
 GameObject:
   m_ObjectHideFlags: 0
@@ -3045,7 +3047,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 505baaf07cae94eb8b49ed392ca51bec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadingText: {fileID: 2049345617}
+  fadingText: {fileID: 0}
   message: checkpoint
   customDisplayTime: 3
   customFadeTime: 2
