@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class PlatformMovement : MonoBehaviour
 {
-    public float horizontalDistance = 5f; // 水平移动的距离
+    public float horizontalDistance; // 水平移动的距离
     public float verticalDistance ;   // 垂直移动的距离
-    public float speed = 2f;              // 移动速度
-    public bool startMovingRight = true;  // 初始水平移动方向
-    public bool moveVertical = false;     // 是否同时进行垂直移动
+    public float speed;              // 移动速度
+    public bool startMovingRight;  // 初始水平移动方向
+    public bool moveVertical;     // 是否同时进行垂直移动
 
     private Vector2 startPosition;
     private bool movingRight;
@@ -25,7 +25,7 @@ public class PlatformMovement : MonoBehaviour
         Vector2 horizontalTarget = startPosition + (movingRight ? Vector2.right : Vector2.left) * horizontalDistance;
 
         // 计算垂直目标位置（基于正弦波实现上下循环移动）
-        float verticalOffset = moveVertical ? Mathf.Sin(Time.time * speed) * verticalDistance : 0;
+        float verticalOffset = moveVertical ? Mathf.Sin(Time.time * speed) * verticalDistance * 10.0f : 0;
         Vector2 targetPosition = new Vector2(horizontalTarget.x, startPosition.y + verticalOffset);
 
         // 使用 Rigidbody2D 移动平台
