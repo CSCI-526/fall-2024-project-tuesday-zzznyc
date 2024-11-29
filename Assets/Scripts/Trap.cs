@@ -10,9 +10,10 @@ public class Trap : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
         else if (collision.gameObject.CompareTag("BOOM"))
-        {
-            // 子弹碰到陷阱时销毁陷阱
+        {   
+            Destroy(collision.gameObject);
             Destroy(gameObject);
+            
         }
     }
 }

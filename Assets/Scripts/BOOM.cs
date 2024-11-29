@@ -29,15 +29,16 @@ public class BOOM : MonoBehaviour
                 Destroy(gameObject);  // Destroy the object if collided with player twice
             }
         }
-        if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Floor"))
-        {
-            Destroy(gameObject);  // Destroy immediately
-        }
+        // if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Floor"))
+        // {
+        //     Destroy(gameObject);  // Destroy immediately
+        // }
+
         if (collision.gameObject.CompareTag("Trap") || collision.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log($"Collision with: {collision.gameObject.name}");
+            // Debug.Log("Trap or Enemy hit. Destroying BOOM.");
             Destroy(gameObject);
-            Destroy(collision.gameObject); // Destroy immediately if it hits ANYTHING
+            Destroy(collision.gameObject);
         }
     }
 }

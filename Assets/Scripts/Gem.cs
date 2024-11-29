@@ -1,18 +1,3 @@
-// using UnityEngine;
-
-// public class Gem : MonoBehaviour
-// {
-//     private void OnTriggerEnter2D(Collider2D collision)
-//     {
-//         if (collision.CompareTag("Player"))
-//         {
-//             // 调用玩家脚本中的方法来更改 reticle 颜色
-//             collision.GetComponent<PlayerMovement>().ChangeReticleColor(Color.blue);
-//             // gameObject.SetActive(True); 
-//         }
-//     }
-// }
-
 using UnityEngine;
 using System.Collections;
 

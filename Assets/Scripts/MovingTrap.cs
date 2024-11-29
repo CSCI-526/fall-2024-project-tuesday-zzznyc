@@ -5,8 +5,8 @@ using UnityEngine;
 public class MovingTrap : MonoBehaviour
 {
     public float speed = 3f;               // Speed of the object's movement
-    public float upperBoundary = -9f;      // Upper boundary for vertical movement
-    public float lowerBoundary = -14f;     // Lower boundary for vertical movement
+    public float upperBoundary;      // Upper boundary for vertical movement
+    public float lowerBoundary;     // Lower boundary for vertical movement
     private Vector2 direction = Vector2.up;  // Initial movement direction (upwards)
 
     private void Update()
@@ -32,6 +32,7 @@ public class MovingTrap : MonoBehaviour
         else if (other.gameObject.CompareTag("BOOM"))
         {
             //Destory enemy
+            Destroy(other.gameObject);
             Destroy(gameObject);
         }
     }
