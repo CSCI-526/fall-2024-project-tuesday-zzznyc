@@ -1510,7 +1510,7 @@ Transform:
   m_GameObject: {fileID: 453952465}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.37, y: 0.47, z: 2.3}
+  m_LocalPosition: {x: -10.68, y: 0.62, z: 2.3}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3372,7 +3372,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d5833b19788c104292604bcf4e07ffa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  respawnPosition: {x: -12.48, y: -1.2}
+  respawnPosition: {x: -10.68, y: 0.62}
 --- !u!1001 &1376042580
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3608,7 +3608,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d5833b19788c104292604bcf4e07ffa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  respawnPosition: {x: -12.48, y: -1.2}
+  respawnPosition: {x: -10.68, y: 0.62}
 --- !u!61 &1465365662
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3992,7 +3992,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d5833b19788c104292604bcf4e07ffa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  respawnPosition: {x: -12.48, y: -1.2}
+  respawnPosition: {x: -10.68, y: 0.62}
 --- !u!61 &1655508559
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4214,7 +4214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d5833b19788c104292604bcf4e07ffa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  respawnPosition: {x: -12.48, y: -1.2}
+  respawnPosition: {x: -10.68, y: 0.62}
 --- !u!61 &1689455632
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5195,11 +5195,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1909660506305616914, guid: 9c45e6929e0bd41d180fe6b22d6bec9b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.9693
+      value: -4.9
       objectReference: {fileID: 0}
     - target: {fileID: 1909660506305616914, guid: 9c45e6929e0bd41d180fe6b22d6bec9b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.4
+      value: -3.46
       objectReference: {fileID: 0}
     - target: {fileID: 1909660506305616914, guid: 9c45e6929e0bd41d180fe6b22d6bec9b, type: 3}
       propertyPath: m_LocalPosition.z
