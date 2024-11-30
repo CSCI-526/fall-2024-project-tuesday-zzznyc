@@ -12,6 +12,7 @@ TagManager:
   - Trap
   - Enemy
   - CheckPoint
+  - MovingPlatform
   layers:
   - Default
   - TransparentFX
