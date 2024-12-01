@@ -2156,7 +2156,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8543428251293488408, guid: fcb70d864f7956a44a0e4b6cfc7abc3e, type: 3}
       propertyPath: m_TagString
-      value: Floor
+      value: leftwall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3794,7 +3794,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontalDistance: 0
   verticalDistance: 50
-  speed: 1.5
+  horizontalSpeed: 0
+  verticalSpeed: 0
   startMovingRight: 0
   moveVertical: 1
 --- !u!4 &1519626719 stripped
@@ -5126,7 +5127,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2089350009115239933, guid: bc91326f38be08f41ac078ddb47ae287, type: 3}
       propertyPath: m_TagString
-      value: Wall
+      value: leftwall
       objectReference: {fileID: 0}
     - target: {fileID: 3806844064144175239, guid: bc91326f38be08f41ac078ddb47ae287, type: 3}
       propertyPath: m_LocalScale.x
@@ -5378,7 +5379,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2089350009115239933, guid: bc91326f38be08f41ac078ddb47ae287, type: 3}
       propertyPath: m_TagString
-      value: Wall
+      value: RightWall
       objectReference: {fileID: 0}
     - target: {fileID: 3806844064144175239, guid: bc91326f38be08f41ac078ddb47ae287, type: 3}
       propertyPath: m_LocalScale.x

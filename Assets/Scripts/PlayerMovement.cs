@@ -31,8 +31,8 @@ public class PlayerMovement : MonoBehaviour
     // private bool TrapBoom = false;
 
     private bool GravityNotUsed = true; //Got gravity item
-    // private bool gravityEnabled = false;    //Enabled gravity change
-    // private bool hasChosenGravity = false;
+    private string currentWall = "";
+    private string previousWall = ""; // 用于记录松开空格前的墙
 
     [SerializeField] float specialPlatformJumpForce = 15f;  // New: Boosted jump force for special platform
     void Start()
@@ -79,6 +79,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKey("space") && isGrounded)
         {   
+            previousWall = currentWall;
             reticleSpeed = 6.0f;
             if (increasingDistance)
             {   
@@ -92,7 +93,16 @@ public class PlayerMovement : MonoBehaviour
         }
 
         if (Input.GetKeyUp("space") && isGrounded)
-        {   
+        {   if (previousWall == currentWall && !string.IsNullOrEmpty(currentWall))
+            {
+                rb.gravityScale = 4.0f; // 如果仍接触相同的墙，调整重力
+                Debug.Log($"Player remains on {currentWall}. Gravity set to 5.0f.");
+            }
+            else
+            {   
+                previousWall = "";
+                Debug.Log("Player is not on the same wall.");
+            }
             if (currentReticleDistance >= maxReticleDistance * 0.99f)  // 如果蓄力接近满
             {
                 speedMultiplier = 1.1f;
@@ -104,6 +114,7 @@ public class PlayerMovement : MonoBehaviour
             currentReticleDistance = minReticleDistance;
             reticle.transform.position = (Vector2)transform.position + direction.normalized * currentReticleDistance / 5.0f;
             increasingDistance = true;
+            
         }
 
         if (Input.GetKey(KeyCode.Return) && IsReticleColorEqual(Color.red))
@@ -121,7 +132,8 @@ public class PlayerMovement : MonoBehaviour
         }
 
         if (Input.GetKeyUp(KeyCode.Return) && IsReticleColorEqual(Color.red))
-        {
+        {   
+            
             if (currentReticleDistance >= maxReticleDistance * 0.99f)
             {
                 speedMultiplier = 1.1f;
@@ -134,6 +146,8 @@ public class PlayerMovement : MonoBehaviour
             ResetReticleColor();
             currentReticleDistance = minReticleDistance;
             increasingDistance = true;
+
+
         }
 
         if (Input.GetKeyUp("r"))
@@ -168,10 +182,13 @@ public class PlayerMovement : MonoBehaviour
 
 void OnCollisionEnter2D(Collision2D collision)
 {
-    if (collision.gameObject.CompareTag("Floor") || collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("JumpPlatform"))
+    if (collision.gameObject.CompareTag("Floor") || collision.gameObject.CompareTag("Wall") || 
+        collision.gameObject.CompareTag("JumpPlatform") || 
+        collision.gameObject.CompareTag("leftwall") || 
+        collision.gameObject.CompareTag("RightWall"))
     {
         contactCount++;
-        isGrounded = true; // 有接触时，设置isGrounded为true
+        isGrounded = true;
     }
 
     if (collision.gameObject.CompareTag("Floor"))
@@ -182,6 +199,18 @@ void OnCollisionEnter2D(Collision2D collision)
     if (collision.gameObject.CompareTag("Wall"))
     {
         rb.gravityScale = 0.1f;
+        reticleSpeed = 100.0f;
+    }
+    if (collision.gameObject.CompareTag("leftwall"))
+    {
+        currentWall = "leftwall"; // 设置当前接触的是 leftwall
+        rb.gravityScale = 0.05f;
+        reticleSpeed = 100.0f;
+    }
+    else if (collision.gameObject.CompareTag("RightWall"))
+    {
+        currentWall = "rightwall"; // 设置当前接触的是 rightwall
+        rb.gravityScale = 0.05f;
         reticleSpeed = 100.0f;
     }
 
@@ -196,16 +225,37 @@ void OnCollisionEnter2D(Collision2D collision)
 
 void OnCollisionExit2D(Collision2D collision)
 {
-    if (collision.gameObject.CompareTag("Floor") || collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("JumpPlatform"))
+    // if (collision.gameObject.CompareTag("Floor") || collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("JumpPlatform"))
+    // {
+    //     contactCount--;
+    //     if (contactCount <= 0)
+    //     {
+    //         contactCount = 0; // 防止计数器变为负数
+    //         isGrounded = false; // 没有接触物体时，设置isGrounded为false
+    //         rb.gravityScale = regGrav;
+    //         reticleSpeed = 6.0f;
+    //     }
+    // }
+    if (collision.gameObject.CompareTag("Floor") || collision.gameObject.CompareTag("Wall") || 
+        collision.gameObject.CompareTag("JumpPlatform") || 
+        collision.gameObject.CompareTag("leftwall") || 
+        collision.gameObject.CompareTag("RightWall"))
     {
         contactCount--;
         if (contactCount <= 0)
         {
             contactCount = 0; // 防止计数器变为负数
-            isGrounded = false; // 没有接触物体时，设置isGrounded为false
+            isGrounded = false;
             rb.gravityScale = regGrav;
             reticleSpeed = 6.0f;
+            currentWall = ""; // 清空当前墙的记录
         }
+    }
+
+    if (collision.gameObject.CompareTag("leftwall") || collision.gameObject.CompareTag("RightWall"))
+    {
+        currentWall = ""; // 玩家离开墙时清空记录
+        Debug.Log("Player left the wall.");
     }
 }
 
