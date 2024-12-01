@@ -3194,6 +3194,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 16.51, y: 6.06, z: -0.19849065}
+<<<<<<< HEAD
   m_LocalScale: {x: 0.65125144, y: 0.6582989, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3901,6 +3902,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 16.78, y: -10.94, z: -0.19849065}
+=======
+>>>>>>> parent of 888c5cd (Merge branch 'gold' of https://github.com/CSCI-526/fall-2024-project-tuesday-zzznyc into gold)
   m_LocalScale: {x: 0.65125144, y: 0.6582989, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4050,6 +4053,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 214178333345332128, guid: af1c9b230037749d09fe1f27cba43540, type: 3}
   m_PrefabInstance: {fileID: 267064785}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD
 --- !u!224 &781103960 stripped
 RectTransform:
@@ -7384,6 +7388,8 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 828041291}
   m_CullTransparentMesh: 1
+=======
+>>>>>>> parent of 888c5cd (Merge branch 'gold' of https://github.com/CSCI-526/fall-2024-project-tuesday-zzznyc into gold)
 --- !u!1001 &831946588
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7521,19 +7527,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2904733840665106054, guid: fcb70d864f7956a44a0e4b6cfc7abc3e, type: 3}
       propertyPath: m_LocalScale.x
-      value: 44.91543
+      value: 45.01427
       objectReference: {fileID: 0}
     - target: {fileID: 2904733840665106054, guid: fcb70d864f7956a44a0e4b6cfc7abc3e, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.23679069
+      value: 0.35855648
       objectReference: {fileID: 0}
     - target: {fileID: 2904733840665106054, guid: fcb70d864f7956a44a0e4b6cfc7abc3e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.58
+      value: -0.5361
       objectReference: {fileID: 0}
     - target: {fileID: 2904733840665106054, guid: fcb70d864f7956a44a0e4b6cfc7abc3e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 12.88
+      value: 12.8632
       objectReference: {fileID: 0}
     - target: {fileID: 2904733840665106054, guid: fcb70d864f7956a44a0e4b6cfc7abc3e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7786,6 +7792,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c7aeb05954d746beb79f65e36048ca4, type: 3}
+<<<<<<< HEAD
 --- !u!1 &624622712 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 935726821986071668, guid: 390d0ecd098b44c8b8a38ed43462aa92, type: 3}
@@ -11471,6 +11478,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c7aeb05954d746beb79f65e36048ca4, type: 3}
+=======
+>>>>>>> parent of 888c5cd (Merge branch 'gold' of https://github.com/CSCI-526/fall-2024-project-tuesday-zzznyc into gold)
 --- !u!1 &1005120066
 GameObject:
   m_ObjectHideFlags: 0

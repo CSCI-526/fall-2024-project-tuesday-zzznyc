@@ -13,9 +13,12 @@ TagManager:
   - Enemy
   - CheckPoint
 <<<<<<< HEAD
+<<<<<<< HEAD
   - MovingPlatform
   - leftwall
   - RightWall
+=======
+>>>>>>> parent of 888c5cd (Merge branch 'gold' of https://github.com/CSCI-526/fall-2024-project-tuesday-zzznyc into gold)
 =======
 >>>>>>> parent of 888c5cd (Merge branch 'gold' of https://github.com/CSCI-526/fall-2024-project-tuesday-zzznyc into gold)
   layers:
