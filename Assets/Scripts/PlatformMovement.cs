@@ -3,54 +3,39 @@ using UnityEngine;
 public class PlatformMovement : MonoBehaviour
 {
     public float horizontalDistance; // 水平移动的距离
-    public float verticalDistance;   // 垂直移动的距离
-    public float horizontalSpeed;    // 水平移动速度
-    public float verticalSpeed;      // 垂直移动速度
-    public bool startMovingRight;    // 初始水平移动方向
-    public bool moveVertical;        // 是否进行垂直移动
+    public float verticalDistance ;   // 垂直移动的距离
+    public float speed;              // 移动速度
+    public bool startMovingRight;  // 初始水平移动方向
+    public bool moveVertical;     // 是否同时进行垂直移动
 
     private Vector2 startPosition;
     private bool movingRight;
-    private bool movingUp; // 垂直移动方向
     private Rigidbody2D rb;
 
     void Start()
     {
         startPosition = transform.position;
         movingRight = startMovingRight;
-        movingUp = true; // 默认开始向上移动
         rb = GetComponent<Rigidbody2D>();
     }
 
     void FixedUpdate()
     {
-        // 水平目标位置计算
-        float targetX = startPosition.x + (movingRight ? horizontalDistance : -horizontalDistance);
-        
-        // 垂直目标位置计算
-        float targetY = moveVertical
-            ? startPosition.y + (movingUp ? verticalDistance : -verticalDistance)
-            : rb.position.y; // 如果不垂直移动，则保持当前垂直位置
-        
-        // 计算目标位置
-        Vector2 targetPosition = new Vector2(targetX, targetY);
+        // 计算水平目标位置
+        Vector2 horizontalTarget = startPosition + (movingRight ? Vector2.right : Vector2.left) * horizontalDistance;
 
-        // 移动到目标位置
-        float currentHorizontalSpeed = horizontalSpeed * Time.fixedDeltaTime;
-        float currentVerticalSpeed = verticalSpeed * Time.fixedDeltaTime;
-        Vector2 newPosition = Vector2.MoveTowards(rb.position, targetPosition, Mathf.Max(currentHorizontalSpeed, currentVerticalSpeed));
+        // 计算垂直目标位置（基于正弦波实现上下循环移动）
+        float verticalOffset = moveVertical ? Mathf.Sin(Time.time * speed) * verticalDistance * 10.0f : 0;
+        Vector2 targetPosition = new Vector2(horizontalTarget.x, startPosition.y + verticalOffset);
+
+        // 使用 Rigidbody2D 移动平台
+        Vector2 newPosition = Vector2.MoveTowards(rb.position, targetPosition, speed * Time.fixedDeltaTime);
         rb.MovePosition(newPosition);
 
-        // 检查是否到达水平目标位置并反转方向
-        if (Mathf.Abs(rb.position.x - targetX) < 0.1f)
+        // 检查是否到达水平目标位置，并反转水平移动方向
+        if (Mathf.Abs(rb.position.x - horizontalTarget.x) < 0.1f)
         {
             movingRight = !movingRight;
-        }
-
-        // 检查是否到达垂直目标位置并反转方向
-        if (moveVertical && Mathf.Abs(rb.position.y - targetY) < 0.1f)
-        {
-            movingUp = !movingUp;
         }
     }
 }
