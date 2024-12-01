@@ -23965,6 +23965,8 @@ PrefabInstance:
 >>>>>>> parent of d89f665 (1)
 =======
 >>>>>>> parent of d89f665 (1)
+=======
+>>>>>>> parent of d89f665 (1)
       propertyPath: m_LocalScale.x
       value: 0.5
       objectReference: {fileID: 0}
@@ -23980,6 +23982,9 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of d89f665 (1)
 =======
 >>>>>>> parent of d89f665 (1)
 =======
@@ -24033,6 +24038,9 @@ PrefabInstance:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of d89f665 (1)
 =======
 >>>>>>> parent of d89f665 (1)
 =======
@@ -24459,11 +24467,15 @@ PrefabInstance:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< Updated upstream
 =======
 >>>>>>> GoldVersion
     - target: {fileID: 207286423433261259, guid: 5e6a4a0c34705b546a6bfbc63a9f0be3, type: 3}
+=======
+    - target: {fileID: 7180434990737014542, guid: cd2de514f1aa74f5197b3a5e11383dc8, type: 3}
+>>>>>>> parent of d89f665 (1)
 =======
     - target: {fileID: 7180434990737014542, guid: cd2de514f1aa74f5197b3a5e11383dc8, type: 3}
 >>>>>>> parent of d89f665 (1)
@@ -24486,6 +24498,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8764823352720086926, guid: cd2de514f1aa74f5197b3a5e11383dc8, type: 3}
       propertyPath: m_LocalPosition.x
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -24527,6 +24540,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8764823352720086926, guid: cd2de514f1aa74f5197b3a5e11383dc8, type: 3}
 >>>>>>> parent of d89f665 (1)
+=======
+      value: -4.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 8764823352720086926, guid: cd2de514f1aa74f5197b3a5e11383dc8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 9.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8764823352720086926, guid: cd2de514f1aa74f5197b3a5e11383dc8, type: 3}
+>>>>>>> parent of d89f665 (1)
       propertyPath: m_LocalPosition.z
       value: -0.19849065
       objectReference: {fileID: 0}
@@ -24575,6 +24597,7 @@ PrefabInstance:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> Stashed changes
 >>>>>>> GoldVersion
@@ -24587,6 +24610,9 @@ PrefabInstance:
       value: 0.32439256
       objectReference: {fileID: 0}
     - target: {fileID: 2904733840665106054, guid: fcb70d864f7956a44a0e4b6cfc7abc3e, type: 3}
+=======
+    - target: {fileID: 214178333345332128, guid: af1c9b230037749d09fe1f27cba43540, type: 3}
+>>>>>>> parent of d89f665 (1)
 =======
     - target: {fileID: 214178333345332128, guid: af1c9b230037749d09fe1f27cba43540, type: 3}
 >>>>>>> parent of d89f665 (1)
@@ -25004,6 +25030,7 @@ Transform:
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!1001 &4664517166829132876
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -25950,6 +25977,8 @@ Transform:
 >>>>>>> parent of d89f665 (1)
 =======
 >>>>>>> parent of d89f665 (1)
+=======
+>>>>>>> parent of d89f665 (1)
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -26007,6 +26036,9 @@ PrefabInstance:
     m_AddedComponents: []
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of d89f665 (1)
+=======
 >>>>>>> parent of d89f665 (1)
 =======
 >>>>>>> parent of d89f665 (1)

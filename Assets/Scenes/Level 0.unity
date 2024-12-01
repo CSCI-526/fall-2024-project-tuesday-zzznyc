@@ -1699,6 +1699,9 @@ PrefabInstance:
 =======
       value: 1.1
 >>>>>>> parent of d89f665 (1)
+=======
+      value: 1.1
+>>>>>>> parent of d89f665 (1)
       objectReference: {fileID: 0}
     - target: {fileID: 3807338294296147301, guid: 5e6a4a0c34705b546a6bfbc63a9f0be3, type: 3}
       propertyPath: m_Material
