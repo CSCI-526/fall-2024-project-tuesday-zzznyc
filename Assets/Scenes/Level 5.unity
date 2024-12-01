@@ -3195,6 +3195,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 16.51, y: 6.06, z: -0.19849065}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_LocalScale: {x: 0.65125144, y: 0.6582989, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3904,6 +3905,8 @@ Transform:
   m_LocalPosition: {x: 16.78, y: -10.94, z: -0.19849065}
 =======
 >>>>>>> parent of 888c5cd (Merge branch 'gold' of https://github.com/CSCI-526/fall-2024-project-tuesday-zzznyc into gold)
+=======
+>>>>>>> parent of 888c5cd (Merge branch 'gold' of https://github.com/CSCI-526/fall-2024-project-tuesday-zzznyc into gold)
   m_LocalScale: {x: 0.65125144, y: 0.6582989, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4053,6 +4056,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 214178333345332128, guid: af1c9b230037749d09fe1f27cba43540, type: 3}
   m_PrefabInstance: {fileID: 267064785}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 --- !u!224 &781103960 stripped
@@ -7390,6 +7394,8 @@ CanvasRenderer:
   m_CullTransparentMesh: 1
 =======
 >>>>>>> parent of 888c5cd (Merge branch 'gold' of https://github.com/CSCI-526/fall-2024-project-tuesday-zzznyc into gold)
+=======
+>>>>>>> parent of 888c5cd (Merge branch 'gold' of https://github.com/CSCI-526/fall-2024-project-tuesday-zzznyc into gold)
 --- !u!1001 &831946588
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7540,6 +7546,7 @@ PrefabInstance:
     - target: {fileID: 2904733840665106054, guid: fcb70d864f7956a44a0e4b6cfc7abc3e, type: 3}
       propertyPath: m_LocalPosition.y
       value: 12.8632
+<<<<<<< HEAD
       objectReference: {fileID: 0}
     - target: {fileID: 2904733840665106054, guid: fcb70d864f7956a44a0e4b6cfc7abc3e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -11227,6 +11234,8 @@ PrefabInstance:
     - target: {fileID: 2904733840665106054, guid: fcb70d864f7956a44a0e4b6cfc7abc3e, type: 3}
       propertyPath: m_LocalPosition.y
       value: 12.8632
+=======
+>>>>>>> parent of 888c5cd (Merge branch 'gold' of https://github.com/CSCI-526/fall-2024-project-tuesday-zzznyc into gold)
       objectReference: {fileID: 0}
     - target: {fileID: 2904733840665106054, guid: fcb70d864f7956a44a0e4b6cfc7abc3e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -11478,6 +11487,9 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c7aeb05954d746beb79f65e36048ca4, type: 3}
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 888c5cd (Merge branch 'gold' of https://github.com/CSCI-526/fall-2024-project-tuesday-zzznyc into gold)
 =======
 >>>>>>> parent of 888c5cd (Merge branch 'gold' of https://github.com/CSCI-526/fall-2024-project-tuesday-zzznyc into gold)
 --- !u!1 &1005120066
