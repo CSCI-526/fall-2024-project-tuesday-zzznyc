@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/UI/LevelPickScene.unity
     guid: 7c20b4526e1964ea5abb895a3249f457
   - enabled: 1
-    path: Assets/Scenes/UI/VictoryScene.unity
+    path: Assets/Scenes/UI/VIctoryScene.unity
     guid: ff3bc9eb519f8492c86424e7aad624dd
   - enabled: 1
     path: Assets/Scenes/Level 1.unity
