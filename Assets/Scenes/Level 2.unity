@@ -1188,12 +1188,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39136dd7263848b5b31d2556f7aeb21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalDistance: 2
-  verticalDistance: 3
-  horizontalSpeed: 0
-  verticalSpeed: 0
+  horizontalDistance: 1
+  verticalDistance: 1
+  horizontalSpeed: 1
+  verticalSpeed: 1
   startMovingRight: 1
-  moveVertical: 0
+  moveVertical: 1
 --- !u!1001 &517403075
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2321,7 +2321,19 @@ PrefabInstance:
     - target: {fileID: 3769851218888884703, guid: fcb70d864f7956a44a0e4b6cfc7abc3e, type: 3}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: 6200000, guid: 52671a41688b8499391bc72813eeabe1, type: 2}
+      objectReference: {fileID: 6200000, guid: e5d68ffdc2fe0e3418f4de240b6cfefa, type: 2}
+    - target: {fileID: 4023827498302900349, guid: fcb70d864f7956a44a0e4b6cfc7abc3e, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4023827498302900349, guid: fcb70d864f7956a44a0e4b6cfc7abc3e, type: 3}
+      propertyPath: m_Color.g
+      value: 0.92156863
+      objectReference: {fileID: 0}
+    - target: {fileID: 4023827498302900349, guid: fcb70d864f7956a44a0e4b6cfc7abc3e, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4023827498302900349, guid: fcb70d864f7956a44a0e4b6cfc7abc3e, type: 3}
       propertyPath: m_Enabled
       value: 1
