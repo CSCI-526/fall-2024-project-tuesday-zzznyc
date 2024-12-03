@@ -2498,19 +2498,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2904733840665106054, guid: fcb70d864f7956a44a0e4b6cfc7abc3e, type: 3}
       propertyPath: m_LocalScale.x
-      value: 7.9314027
+      value: 2.6110191
       objectReference: {fileID: 0}
     - target: {fileID: 2904733840665106054, guid: fcb70d864f7956a44a0e4b6cfc7abc3e, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.22836001
+      value: 0.50549835
       objectReference: {fileID: 0}
     - target: {fileID: 2904733840665106054, guid: fcb70d864f7956a44a0e4b6cfc7abc3e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.9733
+      value: -3.93
       objectReference: {fileID: 0}
     - target: {fileID: 2904733840665106054, guid: fcb70d864f7956a44a0e4b6cfc7abc3e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.6442
+      value: -6
       objectReference: {fileID: 0}
     - target: {fileID: 2904733840665106054, guid: fcb70d864f7956a44a0e4b6cfc7abc3e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4221,19 +4221,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1909660506305616914, guid: 9c45e6929e0bd41d180fe6b22d6bec9b, type: 3}
       propertyPath: m_LocalScale.x
-      value: 15.5747175
+      value: 8.812578
       objectReference: {fileID: 0}
     - target: {fileID: 1909660506305616914, guid: 9c45e6929e0bd41d180fe6b22d6bec9b, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.835071
+      value: 0.557911
       objectReference: {fileID: 0}
     - target: {fileID: 1909660506305616914, guid: 9c45e6929e0bd41d180fe6b22d6bec9b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.8418
+      value: -14.2228
       objectReference: {fileID: 0}
     - target: {fileID: 1909660506305616914, guid: 9c45e6929e0bd41d180fe6b22d6bec9b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -9.1129
+      value: -8.9743
       objectReference: {fileID: 0}
     - target: {fileID: 1909660506305616914, guid: 9c45e6929e0bd41d180fe6b22d6bec9b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4475,7 +4475,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadingText: {fileID: 508613095}
-  message: Jump onto Orange and  break ice!
+  message: Jump through Blue!
   customDisplayTime: 3
   customFadeTime: 2
 --- !u!4 &1930121735
@@ -4896,8 +4896,8 @@ Transform:
   m_GameObject: {fileID: 2049202334}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.1521, y: -3.5724, z: 2.7563374}
-  m_LocalScale: {x: 14.804768, y: 0.4726605, z: 1}
+  m_LocalPosition: {x: -13.8957, y: -3.5447, z: 2.7563374}
+  m_LocalScale: {x: 9.3178005, y: 0.41725338, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
