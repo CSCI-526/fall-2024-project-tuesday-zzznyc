@@ -849,7 +849,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadingText: {fileID: 20114625}
-  message: Bomb's gravity is the same with player's
+  message: Gravity also affects the red ball
   customDisplayTime: 3
   customFadeTime: 2
 --- !u!4 &261763958
